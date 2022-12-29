@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class Accordion extends React.Component {
+export default class FAQ extends React.Component {
   constructor(props) {
     super(props);
     this.props.topics = [
