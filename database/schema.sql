@@ -14,7 +14,7 @@ CREATE TABLE "public"."users" (
 	"hashedPassword" TEXT NOT NULL,
 	"city" TEXT NOT NULL,
 	"state" TEXT NOT NULL,
-	"createdAt" DATETIME NOT NULL,
+	"createdAt" timestamptz(6) NOT NULL DEFAULT now(),
 	CONSTRAINT "users_pk" PRIMARY KEY ("userId")
 ) WITH (
   OIDS=FALSE
@@ -27,7 +27,7 @@ CREATE TABLE "public"."wants" (
 	"wantTitle" TEXT NOT NULL,
 	"wantPhotoFile" TEXT NOT NULL,
 	"wantContent" TEXT NOT NULL,
-	"createdAt" DATETIME NOT NULL,
+  "createdAt" timestamptz(6) NOT NULL DEFAULT now(),
 	"userId" integer NOT NULL,
 	"isbn" TEXT NOT NULL,
 	CONSTRAINT "wants_pk" PRIMARY KEY ("wantId")
@@ -42,7 +42,7 @@ CREATE TABLE "public"."sales" (
 	"saleTitle" TEXT NOT NULL,
 	"salePhotoFile" TEXT NOT NULL,
 	"saleContent" TEXT NOT NULL,
-	"createdAt" DATETIME NOT NULL,
+	"createdAt" timestamptz(6) NOT NULL DEFAULT now(),
 	"userId" integer NOT NULL,
 	"isbn" TEXT NOT NULL,
 	"tradeOption" BOOLEAN NOT NULL,
