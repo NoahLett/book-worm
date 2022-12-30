@@ -2,7 +2,8 @@ import React from 'react';
 import Header from './components/header';
 import Home from './pages/home';
 import FAQ from './pages/faq';
-import { parseRoute } from './lib';
+import parseRoute from './lib/parse-route';
+import topics from './lib/data';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -20,12 +21,12 @@ export default class App extends React.Component {
   }
 
   renderPage() {
-    const { route } = this.state;
-    if (route.path === '') {
+    const { path } = this.state.route;
+    if (path === '') {
       return <Home/>;
     }
-    if (route.path === 'faq') {
-      return <FAQ/>;
+    if (path === 'faq') {
+      return <FAQ topics={topics}/>;
     }
   }
 
@@ -33,7 +34,7 @@ export default class App extends React.Component {
     return (
       <>
         <Header />
-        {this.renderPage}
+        { this.renderPage() }
       </>
     );
   }

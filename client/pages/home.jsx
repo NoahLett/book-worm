@@ -1,10 +1,9 @@
 import React from 'react';
-import Header from '../components/header';
 
 export default function Home(props) {
   return (
-    <div>
-      <Header />
+    <div className='d-flex justify-content-center'>
+      Hello
     </div>
   );
 }
