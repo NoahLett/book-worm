@@ -103,8 +103,9 @@ export default class Registration extends React.Component {
                 required
                 name="state"
                 id="state"
+                onChange={this.handleChange}
                 className='form-control'>
-                    <option value="" disabled selected>Choose...</option>
+                    <option value="" defaultValue="">Choose...</option>
                     <option value="AL">AL</option>
                     <option value="AK">AK</option>
                     <option value="AZ">AZ</option>
