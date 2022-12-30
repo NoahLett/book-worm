@@ -16,6 +16,7 @@ export default class Registration extends React.Component {
     this.validatePassword = this.validatePassword.bind(this);
     this.changeAndValid = this.changeAndValid.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.stopper = this.stopper.bind(this);
   }
 
   handleChange(event) {
@@ -38,6 +39,14 @@ export default class Registration extends React.Component {
     this.validatePassword();
   }
 
+  stopper() {
+    if (this.validatePassword() === 'invalid') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     const req = {
@@ -56,6 +65,7 @@ export default class Registration extends React.Component {
 
   render() {
     const check = this.validatePassword();
+    const stop = this.stopper();
     return (
       <div>
         <div className='d-flex justify-content-center'>
@@ -190,7 +200,7 @@ export default class Registration extends React.Component {
             className={`form-control ${check}`} />
               </div>
               <div className='d-flex justify-content-end'>
-                <button type="submit" className='btn btn-outline-info mt-2'>Sign Up</button>
+                <button type="submit" className='btn btn-outline-info mt-2' disabled={stop}>Sign Up</button>
               </div>
             </form>
           </div>
