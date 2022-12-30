@@ -69,7 +69,13 @@
   background-color: #f1f3f5;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1200px) {
+  .form-container {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 760px) {
   .accordion {
     width: 100%;
   }
