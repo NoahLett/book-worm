@@ -5,18 +5,16 @@ export default function Header(props) {
     <header>
       <nav>
         <div className='d-flex row align-items-center'>
-          <div className='d-flex justify-content-center col'>
-            <a href="#" className='bookworm'>
-              <i className="fa-solid fa-worm"/>BookWorm
-            </a>
-          </div>
-          <div className='d-flex justify-content-center col'>
-            <a href="#" className='user'>
-              <i className="fa-solid fa-user" />
-            </a>
-            <a href="#" className='menu'>
-              <i className="fa-solid fa-bars" />
-            </a>
+          <div className='d-flex justify-content-between align-items-center'>
+            <a href="#" className='bookworm'>BookWorm</a>
+            <span className='d-flex align-items-center'>
+              <a href="#" className='user mx-3'>
+                <i className="fa-solid fa-user" />
+              </a>
+              <a href="#" className='menu mx-3'>
+                <i className="fa-solid fa-bars" />
+              </a>
+            </span>
           </div>
         </div>
       </nav>

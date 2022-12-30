@@ -1,10 +1,10 @@
 #root {
-  max-width: 99vw;
+  max-width: 100vw;
 }
 
 .bookworm {
   font-family: Pacifico, cursive;
-  font-size: 3.5rem;
+  font-size: 3.25rem;
   color: #0096c7;
   text-decoration: none;
   text-shadow: 1.5px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
@@ -18,7 +18,6 @@
 .menu {
   color: black;
   font-size: 1.5rem;
-  padding-left: 2.5rem;
 }
 
 .faq-header {
@@ -27,9 +26,13 @@
   font-weight: bold;
 }
 
+.acc-box {
+  width: 100%;
+}
+
 .accordion {
   margin-top: 4rem;
-  width: 45%;
+  width: 70%;
   border-radius: 20px;
 }
 
@@ -44,4 +47,10 @@
 .acc-text-box {
   border: 1px solid #0096c7;
   border-radius: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .accordion {
+    width: 100%;
+  }
 }

@@ -22,7 +22,7 @@ export default class FAQ extends React.Component {
     return (
       <div>
         <h1 className='faq-header text-center'>Frequently Asked Questions</h1>
-        <div className='d-flex justify-content-center'>
+        <div className='acc-box d-flex justify-content-center'>
           <div className='accordion'>
             {topics.map((topic, index) => {
               const handleClick = () => {
