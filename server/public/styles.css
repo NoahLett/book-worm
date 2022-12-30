@@ -49,8 +49,32 @@
   border-radius: 20px;
 }
 
+.valid {
+  border: 2px solid limegreen;
+}
+
+.invalid {
+  border: 2px solid red;
+}
+
+.form-container {
+  background-color: #f1f3f5;
+  width: 30%;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+}
+
+.sign-up-form {
+  width: 20rem;
+  background-color: #f1f3f5;
+}
+
 @media screen and (max-width: 768px) {
   .accordion {
+    width: 100%;
+  }
+
+  .form-container {
     width: 100%;
   }
 }
