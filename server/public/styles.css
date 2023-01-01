@@ -15,9 +15,61 @@
   font-size: 1.5rem;
 }
 
-.menu {
-  color: black;
+.fa-bars {
   font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.menu-item {
+  list-style: none;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  padding: 1rem;
+}
+
+.menu-item:first-child {
+  margin-top: 2rem;
+}
+
+.menu-item:hover:not(:first-child) {
+  background-color: #0096c7;
+  border-radius: 5px;
+  color: white;
+}
+
+.menu-link {
+  text-decoration: none;
+  font-size: 1.25rem;
+  color: black;
+}
+
+.menu-link:hover {
+  color: white;
+}
+
+.sidebar {
+  position: absolute;
+  right: 25%;
+  top: 0;
+  bottom: 0;
+  border: 1px solid black;
+  box-shadow: -2px 0 5px darkslategray;
+  z-index: 1;
+  transform: translateX(100%);
+  transition: transform 0.4s;
+  background-color: white;
+  width: 20rem;
+  border-radius: 10px 0 0 10px;
+}
+
+.inactive {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.active {
+  transform: translateX(55%);
 }
 
 .faq-header {

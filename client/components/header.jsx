@@ -1,4 +1,5 @@
 import React from 'react';
+import Drawer from './sidebar';
 
 export default function Header(props) {
   return (
@@ -8,12 +9,10 @@ export default function Header(props) {
           <div className='d-flex justify-content-between align-items-center'>
             <a href="#" className='bookworm'>BookWorm</a>
             <span className='d-flex align-items-center'>
-              <a href="#" className='user mx-3'>
+              <a href="#sign-up" className='user mx-3'>
                 <i className="fa-solid fa-user" />
               </a>
-              <a href="#" className='menu mx-3'>
-                <i className="fa-solid fa-bars" />
-              </a>
+              <Drawer/>
             </span>
           </div>
         </div>
