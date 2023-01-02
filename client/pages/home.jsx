@@ -1,14 +1,15 @@
 import React from 'react';
+import Carousel from '../components/carousel';
 
 export default function Home(props) {
   return (
     <div>
       <div className='d-flex'>
-        <div className='home-header-box d-flex justify-content-start align-items-center'>
+        <div className='home-header-box d-flex justify-content-start align-items-center col'>
           <h1 className='home-header'>Tired of buring your cash on overpriced textbooks?</h1>
         </div>
-        <div className='d-flex justify-content-center align-items-center'>
-          <h1>show</h1>
+        <div className='d-flex justify-content-center align-items-center col'>
+          <Carousel />
         </div>
       </div>
       <div className='quote w-100'>

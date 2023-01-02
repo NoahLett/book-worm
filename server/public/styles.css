@@ -92,6 +92,24 @@
   font-family: Roboto, sans-serif;
 }
 
+.carousel-box {
+  background-color: #f1f3f5;
+  border: 2px solid darkgray;
+  border-radius: 10px;
+}
+
+.carousel-image {
+  width: 20rem;
+  border: 1px solid darkgray;
+  border-radius: 10px;
+}
+
+.fa-chevron-right,
+.fa-chevron-left,
+.fa-circle {
+  cursor: pointer;
+}
+
 .quote {
   font-family: Roboto, sans-serif;
   color: darkslategray;
