@@ -36,7 +36,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className='container'>
+      <div className='main-container'>
         <Header/>
         { this.renderPage() }
       </div>

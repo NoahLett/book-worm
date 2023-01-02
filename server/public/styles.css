@@ -1,5 +1,13 @@
 #root {
   max-width: 100vw;
+  height: 100vh;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(0, 150, 199, 1) 150%);
+}
+
+.main-container {
+  width: 100vw;
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .bookworm {
@@ -16,7 +24,7 @@
 }
 
 .fa-bars {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   cursor: pointer;
 }
 
@@ -49,7 +57,7 @@
 
 .sidebar {
   position: absolute;
-  right: 25%;
+  right: 11rem;
   top: 0;
   bottom: 0;
   border: 1px solid black;
@@ -70,6 +78,23 @@
 
 .active {
   transform: translateX(55%);
+}
+
+.home-header-box {
+  width: 50%;
+  height: 40rem;
+}
+
+.home-header {
+  color: #0096c7;
+  font-weight: bold;
+  font-size: 4rem;
+  font-family: Roboto, sans-serif;
+}
+
+.quote {
+  font-family: Roboto, sans-serif;
+  color: darkslategray;
 }
 
 .faq-header {
@@ -128,11 +153,24 @@
 }
 
 @media screen and (max-width: 760px) {
+  .home-header {
+    font-size: 3.5rem;
+  }
+
+  .main-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   .accordion {
     width: 100%;
   }
 
   .form-container {
     width: 100%;
+  }
+
+  .sidebar {
+    right: 11rem;
   }
 }
