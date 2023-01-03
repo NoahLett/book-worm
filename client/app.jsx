@@ -3,6 +3,7 @@ import Header from './components/header';
 import Home from './pages/home';
 import FAQ from './pages/faq';
 import Registration from './pages/sign-up';
+import Authentication from './pages/sign-in';
 import parseRoute from './lib/parse-route';
 import topics from './lib/data';
 
@@ -31,6 +32,9 @@ export default class App extends React.Component {
     }
     if (path === 'sign-up') {
       return <Registration/>;
+    }
+    if (path === 'sign-in') {
+      return <Authentication/>;
     }
   }
 

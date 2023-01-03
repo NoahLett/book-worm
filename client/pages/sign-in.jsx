@@ -35,10 +35,22 @@ export default class Authentication extends React.Component {
                 onChange={this.handleChange}
                 className="form-control" />
             </div>
+            <div>
+              <label htmlFor="password" className='form-label'>Password</label>
+              <input
+              required
+              id="password"
+              name='password'
+              type="password"
+              onChange={this.handleChange}
+              className="form-control" />
+            </div>
+            <div>
+              <button type='submit' className='btn btn-outline-info mt-2'>Sign In</button>
+            </div>
           </form>
         </div>
       </div>
     );
   }
-
 }
