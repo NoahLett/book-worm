@@ -1,5 +1,4 @@
 import React from 'react';
-import Redirect from '../components/redirect';
 import AppContext from '../lib/app-context';
 
 export default class Authentication extends React.Component {
@@ -32,8 +31,8 @@ export default class Authentication extends React.Component {
       .then(result => {
         if (result.user && result.token) {
           this.context.handleSignIn(result);
+          window.location.hash = '#';
         }
-        if (result.user) return <Redirect to=""/>;
       });
   }
 
@@ -41,14 +40,15 @@ export default class Authentication extends React.Component {
     return (
       <div>
         <div className='d-flex justify-content-center'>
-          <h1 className='text-center my-5 w-50'><strong>Welcome Back!</strong></h1>
+          <h1 className='text-center my-5'><strong>Welcome Back!</strong></h1>
         </div>
         <h3 className='text-center'><strong>Please sign in to gain access to user features.</strong></h3>
-        <div className='form-container d-flex justify-content-center mt-4 py-3'>
-          <form className='sign-in-form' onSubmit={this.handleSubmit}>
-            <div>
-              <label htmlFor="username" className='form-label'>Username</label>
-              <input
+        <div className='d-flex justify-content-center'>
+          <div className='form-container d-flex justify-content-center mt-4 py-3'>
+            <form className='sign-in-form w-100 px-5' onSubmit={this.handleSubmit}>
+              <div>
+                <label htmlFor="username" className='form-label mt-2'>Username</label>
+                <input
                 required
                 autoFocus
                 id='username'
@@ -56,21 +56,25 @@ export default class Authentication extends React.Component {
                 type="text"
                 onChange={this.handleChange}
                 className="form-control" />
-            </div>
-            <div>
-              <label htmlFor="password" className='form-label'>Password</label>
-              <input
+              </div>
+              <div>
+                <label htmlFor="password" className='form-label mt-2'>Password</label>
+                <input
               required
               id="password"
               name='password'
               type="password"
               onChange={this.handleChange}
               className="form-control" />
-            </div>
-            <div>
-              <button type='submit' className='btn btn-outline-info mt-2'>Sign In</button>
-            </div>
-          </form>
+              </div>
+              <div className='d-flex justify-content-end'>
+                <button type='submit' className='btn btn-outline-info mt-3'>Sign In</button>
+              </div>
+              <div>
+                <p className='text-center pt-4'>Not a user? Click <a href='#sign-up' className='text-info text-decoration-none'>here</a> to sign up!</p>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     );
