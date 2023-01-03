@@ -3,12 +3,12 @@ import Carousel from '../components/carousel';
 
 export default function Home(props) {
   return (
-    <div>
-      <div className='d-flex'>
+    <div className='d-flex flex-column justify-content-center align-items-center'>
+      <div className='d-flex w-75'>
         <div className='home-header-box d-flex justify-content-start align-items-center col'>
-          <h1 className='home-header'>Tired of buring your cash on overpriced textbooks?</h1>
+          <h1 className='home-header'>Tired of burning your cash on overpriced textbooks?</h1>
         </div>
-        <div className='d-flex justify-content-center align-items-center col'>
+        <div className='d-flex justify-content-center align-items-center col w-100'>
           <Carousel />
         </div>
       </div>
