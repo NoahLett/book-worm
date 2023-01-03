@@ -1,4 +1,5 @@
 import React from 'react';
+// import Redirect from '../components/redirect';
 
 export default class Authentication extends React.Component {
   constructor(props) {
@@ -35,6 +36,7 @@ export default class Authentication extends React.Component {
   }
 
   render() {
+
     return (
       <div>
         <div className='d-flex justify-content-center'>
