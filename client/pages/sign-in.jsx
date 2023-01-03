@@ -1,5 +1,6 @@
 import React from 'react';
-// import Redirect from '../components/redirect';
+import Redirect from '../components/redirect';
+import AppContext from '../lib/app-context';
 
 export default class Authentication extends React.Component {
   constructor(props) {
@@ -30,13 +31,13 @@ export default class Authentication extends React.Component {
       .then(res => res.json())
       .then(result => {
         if (result.user && result.token) {
-          this.props.onSignIn(result);
+          this.context.handleSignIn(result);
         }
+        if (result.user) return <Redirect to=""/>;
       });
   }
 
   render() {
-
     return (
       <div>
         <div className='d-flex justify-content-center'>
@@ -75,3 +76,4 @@ export default class Authentication extends React.Component {
     );
   }
 }
+Authentication.contextType = AppContext;

@@ -1,4 +1,6 @@
 import React from 'react';
+import jwtDecode from 'jwt-decode';
+import AppContext from './lib/app-context';
 import Header from './components/header';
 import Home from './pages/home';
 import FAQ from './pages/faq';
@@ -11,8 +13,11 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: null,
+      isAuthorizing: true,
       route: parseRoute(window.location.hash)
     };
+    this.handleSignIn = this.handleSignIn.bind(this);
   }
 
   componentDidMount() {
@@ -20,6 +25,15 @@ export default class App extends React.Component {
       const parsed = parseRoute(window.location.hash);
       this.setState({ route: parsed });
     };
+    const token = window.localStorage.getItem('react-context-jwt');
+    const user = token ? jwtDecode(token) : null;
+    this.setState({ user, isAuthorizing: false });
+  }
+
+  handleSignIn(result) {
+    const { user, token } = result;
+    window.localStorage.setItem('react-context-jwt', token);
+    this.setState({ user });
   }
 
   renderPage() {
@@ -39,11 +53,17 @@ export default class App extends React.Component {
   }
 
   render() {
+    if (this.state.isAuthorizing) return null;
+    const { user, route } = this.state;
+    const { handleSignIn } = this;
+    const contextValue = { user, route, handleSignIn };
     return (
-      <div className='main-container'>
-        <Header/>
-        { this.renderPage() }
-      </div>
+      <AppContext.Provider value={contextValue}>
+        <div className='main-container'>
+          <Header/>
+          { this.renderPage() }
+        </div>
+      </AppContext.Provider>
     );
   }
 }
