@@ -166,6 +166,24 @@
   background-color: #f1f3f5;
 }
 
+.welcome-modal-background {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: black;
+  opacity: 50%;
+}
+
+.welcome-modal-container {
+  z-index: 1;
+  position: absolute;
+  border: 2px solid black;
+  right: 0;
+  left: 0;
+}
+
 @media screen and (max-width: 1200px) {
   .form-container {
     width: 45%;

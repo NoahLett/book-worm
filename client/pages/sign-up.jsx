@@ -202,6 +202,9 @@ export default class Registration extends React.Component {
               <div className='d-flex justify-content-end'>
                 <button type="submit" className='btn btn-outline-info mt-2' disabled={stop}>Sign Up</button>
               </div>
+              <div>
+                <p className='text-center pt-4'>Already a user? Click <a href='#sign-in' className='text-info text-decoration-none'>here</a> to sign in!</p>
+              </div>
             </form>
           </div>
         </div>
