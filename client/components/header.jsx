@@ -1,5 +1,6 @@
 import React from 'react';
 import Drawer from './sidebar';
+import UserIcon from './user';
 
 export default function Header(props) {
   return (
@@ -8,9 +9,7 @@ export default function Header(props) {
         <div className='d-flex justify-content-between align-items-center'>
           <a href="#" className='bookworm'>BookWorm</a>
           <span className='d-flex align-items-center'>
-            <a href='#sign-up' className='user mx-4'>
-              <i className='fa-solid fa-user' />
-            </a>
+            <UserIcon/>
             <Drawer/>
           </span>
         </div>
