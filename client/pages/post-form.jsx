@@ -1,5 +1,7 @@
 import React from 'react';
 import AppContext from '../lib/app-context';
+import UserModal from '../components/user-modal';
+import Home from './home';
 
 export default class PostForm extends React.Component {
   constructor(props) {
@@ -14,48 +16,88 @@ export default class PostForm extends React.Component {
     this.fileInputRef = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.fileInputChange = this.fileInputChange.bind(this);
   }
 
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-    if (this.state.image !== 'https://www.kurin.com/wp-content/uploads/placeholder-square.jpg') {
-      this.setState({ image: React.createRef(event.target.files[0].name) });
-    }
+  }
+
+  fileInputChange(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = event => {
+      this.setState({ image: event.target.result });
+    };
+    reader.readAsDataURL(file);
+
   }
 
   handleSubmit(event) {
-    event.preventDefault();
-    const { user } = this.context;
-    const formData = new FormData();
-    formData.append('image', this.fileInputRef.current.files[0]);
-    formData.append('title', this.state.title);
-    formData.append('isbn', this.state.isbn);
-    formData.append('comments', this.state.comments);
-    formData.append('userId', user.userId);
-    fetch('/api/auth/wanted-post', {
-      method: 'POST',
-      body: formData
-    })
-      .then(res => res.json())
-      .then(data => {
-        this.setState({ title: '' });
-        this.setState({ isbn: '' });
-        this.setState({ comments: '' });
-        this.setState({ postType: 'sale' });
-        this.fileInputRef.current.value = null;
+    if (this.state.postType === 'want') {
+      event.preventDefault();
+      const { user } = this.context;
+      const formData = new FormData();
+      formData.append('image', this.fileInputRef.current.files[0]);
+      formData.append('title', this.state.title);
+      formData.append('isbn', this.state.isbn);
+      formData.append('comments', this.state.comments);
+      formData.append('userId', user.userId);
+      fetch('/api/auth/wanted-post', {
+        method: 'POST',
+        body: formData
       })
-      .catch(err => console.error(err));
-    window.location.hash = '';
+        .then(res => res.json())
+        .then(data => {
+          this.setState({ title: '' });
+          this.setState({ isbn: '' });
+          this.setState({ comments: '' });
+          this.setState({ postType: 'sale' });
+        })
+        .catch(err => console.error(err));
+      window.location.hash = '';
+    } else if (this.state.postType === 'sale') {
+      event.preventDefault();
+      const { user } = this.context;
+      const formData = new FormData();
+      formData.append('image', this.fileInputRef.current.files[0]);
+      formData.append('title', this.state.title);
+      formData.append('isbn', this.state.isbn);
+      formData.append('comments', this.state.comments);
+      formData.append('userId', user.userId);
+      fetch('/api/auth/sale-post', {
+        method: 'POST',
+        body: formData
+      })
+        .then(res => res.json())
+        .then(data => {
+          this.setState({ title: '' });
+          this.setState({ isbn: '' });
+          this.setState({ comments: '' });
+          this.setState({ postType: 'sale' });
+        })
+        .catch(err => console.error(err));
+      window.location.hash = '';
+    }
   }
 
   render() {
+    const { user } = this.context;
+    if (!user) {
+      return (
+        <div>
+          <Home/>
+          <UserModal/>
+        </div>
+      );
+    }
     return (
       <div className='d-flex flex-column justify-content-center align-items-center'>
         <h1 className='text-center my-5'>Create or Edit your Post!</h1>
         <div className='d-flex justify-content-around align-items-center bg-light rounded-3 w-50'>
           <div className='col-3 mx-4'>
-            <img className='w-100 h-100 border border-secondary rounded-3' src={this.state.image} alt="post-image" />
+            <img className='post-image border border-secondary rounded-3' src={this.state.image} alt="post-image" />
           </div>
           <div className='col-6 my-3'>
             <form className='post-form m-4' onSubmit={this.handleSubmit}>
@@ -95,7 +137,6 @@ export default class PostForm extends React.Component {
                   <div>
                     <label htmlFor="sale" className='form-label me-2'>For Sale</label>
                     <input
-                  defaultChecked
                   value='sale'
                   name='postType'
                   id='postType'
@@ -123,7 +164,7 @@ export default class PostForm extends React.Component {
                   type="file"
                   name='image'
                   ref={this.fileInputRef}
-                  onChange={this.handleChange}
+                  onChange={this.fileInputChange}
                   accept=".png, .jpg, .jpeg" />
                 </div>
                 <div className='d-flex justify-content-end w-100'>
