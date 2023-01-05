@@ -19,6 +19,9 @@ export default class PostForm extends React.Component {
   handleChange(event) {
     const { name, value } = event.target;
     this.setState({ [name]: value });
+    if (this.state.image !== 'https://www.kurin.com/wp-content/uploads/placeholder-square.jpg') {
+      this.setState({ image: React.createRef(event.target.files[0].name) });
+    }
   }
 
   handleSubmit(event) {
@@ -36,9 +39,14 @@ export default class PostForm extends React.Component {
     })
       .then(res => res.json())
       .then(data => {
+        this.setState({ title: '' });
+        this.setState({ isbn: '' });
+        this.setState({ comments: '' });
+        this.setState({ postType: 'sale' });
         this.fileInputRef.current.value = null;
       })
       .catch(err => console.error(err));
+    window.location.hash = '';
   }
 
   render() {
@@ -115,6 +123,7 @@ export default class PostForm extends React.Component {
                   type="file"
                   name='image'
                   ref={this.fileInputRef}
+                  onChange={this.handleChange}
                   accept=".png, .jpg, .jpeg" />
                 </div>
                 <div className='d-flex justify-content-end w-100'>
