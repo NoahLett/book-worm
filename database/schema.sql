@@ -45,7 +45,6 @@ CREATE TABLE "public"."sales" (
 	"createdAt" timestamptz(6) NOT NULL DEFAULT now(),
 	"userId" integer NOT NULL,
 	"isbn" TEXT NOT NULL,
-	"tradeOption" BOOLEAN NOT NULL,
 	CONSTRAINT "sales_pk" PRIMARY KEY ("saleId")
 ) WITH (
   OIDS=FALSE

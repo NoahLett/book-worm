@@ -8,6 +8,7 @@ import Registration from './pages/sign-up';
 import Authentication from './pages/sign-in';
 import parseRoute from './lib/parse-route';
 import topics from './lib/data';
+import PostForm from './pages/post-form';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -55,6 +56,9 @@ export default class App extends React.Component {
     }
     if (path === 'sign-in') {
       return <Authentication/>;
+    }
+    if (path === 'post-form') {
+      return <PostForm/>;
     }
   }
 
