@@ -51,7 +51,7 @@ export default class Drawer extends React.Component {
               </li>
               <li className='menu-item py-2'>
                 <i className="fa-solid fa-tag me-3" />
-                <a onClick={this.closeMenu} className='menu-link' href="#">Books for Sale</a>
+                <a onClick={this.closeMenu} className='menu-link' href="#for-sale">Books for Sale</a>
               </li>
               <li className='menu-item py-2'>
                 <i className="fa-sharp fa-solid fa-feather-pointed me-3" />
