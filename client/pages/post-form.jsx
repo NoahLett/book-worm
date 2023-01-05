@@ -1,17 +1,18 @@
 import React from 'react';
+import AppContext from '../lib/app-context';
 
 export default class PostForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      image: 'https://ralfvanveen.com/wp-content/uploads/2021/06/Placeholder-_-Begrippenlijst.svg',
+      image: 'https://www.kurin.com/wp-content/uploads/placeholder-square.jpg',
       title: '',
       isbn: '',
       comments: '',
       postType: 'sale'
     };
     this.fileInputRef = React.createRef();
-    // this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -20,19 +21,39 @@ export default class PostForm extends React.Component {
     this.setState({ [name]: value });
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    const { user } = this.context;
+    const formData = new FormData();
+    formData.append('image', this.fileInputRef.current.files[0]);
+    formData.append('title', this.state.title);
+    formData.append('isbn', this.state.isbn);
+    formData.append('comments', this.state.comments);
+    formData.append('userId', user.userId);
+    fetch('/api/auth/wanted-post', {
+      method: 'POST',
+      body: formData
+    })
+      .then(res => res.json())
+      .then(data => {
+        this.fileInputRef.current.value = null;
+      })
+      .catch(err => console.error(err));
+  }
+
   render() {
     return (
-      <div>
+      <div className='d-flex flex-column justify-content-center align-items-center'>
         <h1 className='text-center my-5'>Create or Edit your Post!</h1>
-        <div className='d-flex justify-content-center align-items-center my-5'>
-          <div className='col-3 mx-5'>
-            <img className='w-100 h-100' src={this.state.image} alt="post-image" />
+        <div className='d-flex justify-content-around align-items-center bg-light rounded-3 w-50'>
+          <div className='col-3 mx-4'>
+            <img className='w-100 h-100 border border-secondary rounded-3' src={this.state.image} alt="post-image" />
           </div>
-          <div className='col-5 bg-light my-5'>
-            <form className='post-form' onSubmit={this.handleSubmit}>
+          <div className='col-6 my-3'>
+            <form className='post-form m-4' onSubmit={this.handleSubmit}>
               <div>
                 <div>
-                  <label htmlFor="title" className='form-label'>Title</label>
+                  <label htmlFor="title" className='form-label mt-2'>Title</label>
                   <input
                 required
                 autoFocus
@@ -40,31 +61,31 @@ export default class PostForm extends React.Component {
                 name='title'
                 type="text"
                 onChange={this.handleChange}
-                className="form-control w-50" />
+                className="form-control w-75" />
                 </div>
                 <div>
-                  <label htmlFor="isbn" className='form-label'>ISBN</label>
+                  <label htmlFor="isbn" className='form-label mt-2'>ISBN (i.e.: xxx-x-xx-xxxxxx-x)</label>
                   <input
                   required
                   type="text"
                   name="isbn"
                   id="isbn"
                   onChange={this.handleChange}
-                  className="form-control w-50" />
+                  className="form-control w-75" />
                 </div>
                 <div>
-                  <label htmlFor="comments" className='form-label'>Comments</label>
+                  <label htmlFor="comments" className='form-label mt-2'>Comments</label>
                   <textarea
                   required
                   name="comments"
                   id="comments"
                   maxLength="225"
                   onChange={this.handleChange}
-                  className="form-control w-75" />
+                  className="form-control w-100" />
                 </div>
-                <div className='input-group d-flex justify-content-around w-50'>
+                <div className='input-group d-flex justify-content-around w-50 my-4'>
                   <div>
-                    <label htmlFor="sale" className='form-label'>For Sale</label>
+                    <label htmlFor="sale" className='form-label me-2'>For Sale</label>
                     <input
                   defaultChecked
                   value='sale'
@@ -75,7 +96,7 @@ export default class PostForm extends React.Component {
                   className='form-check-input' />
                   </div>
                   <div>
-                    <label htmlFor="want" className='form-label'>Wanted</label>
+                    <label htmlFor="want" className='form-label me-2'>Wanted</label>
                     <input
                     value='want'
                     name="postType"
@@ -86,7 +107,9 @@ export default class PostForm extends React.Component {
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="image-upload" className='form-label'>Image Upload</label>
+                  <div>
+                    <label htmlFor="image-upload" className='form-label'>Image Upload</label>
+                  </div>
                   <input
                   required
                   type="file"
@@ -94,8 +117,8 @@ export default class PostForm extends React.Component {
                   ref={this.fileInputRef}
                   accept=".png, .jpg, .jpeg" />
                 </div>
-                <div className='d-flex justify-content-end m-3'>
-                  <button type='submit' className='btn btn-outline-info'>Post</button>
+                <div className='d-flex justify-content-end w-100'>
+                  <button type='submit' className='btn btn-outline-info'>Submit Post</button>
                 </div>
               </div>
             </form>
@@ -105,3 +128,4 @@ export default class PostForm extends React.Component {
     );
   }
 }
+PostForm.contextType = AppContext;

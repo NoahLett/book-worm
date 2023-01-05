@@ -192,6 +192,11 @@
   border-radius: 10px;
 }
 
+.post-image {
+  width: 20rem;
+  height: 20rem;
+}
+
 @media screen and (max-width: 1200px) {
   .form-container {
     width: 45%;
