@@ -34,7 +34,7 @@ export default class Wanted extends React.Component {
           <div className='row'>
             {
             this.state.wants.map(want => (
-              <div key={want.saleId} className="col-12 col-md-6 col-lg-4">
+              <div key={want.wantId} className="col-12 col-md-6 col-lg-4">
                 <Want want={want}/>
               </div>
             ))
