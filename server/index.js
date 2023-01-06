@@ -51,6 +51,8 @@ app.post('/api/auth/sign-in', (req, res, next) => {
   }
   const sql = `
   select "userId",
+        "city",
+        "state",
         "hashedPassword"
     from "users"
   where "username" = $1
@@ -62,14 +64,14 @@ app.post('/api/auth/sign-in', (req, res, next) => {
       if (!user) {
         throw new ClientError(401, 'invalid login');
       }
-      const { userId, hashedPassword } = user;
+      const { userId, city, state, hashedPassword } = user;
       return argon2
         .verify(hashedPassword, password)
         .then(isMatching => {
           if (!isMatching) {
             throw new ClientError(401, 'invalid login');
           }
-          const payload = { userId, username };
+          const payload = { userId, username, city, state };
           const token = jwt.sign(payload, process.env.TOKEN_SECRET);
           res.json({ token, user: payload });
         });
@@ -78,17 +80,17 @@ app.post('/api/auth/sign-in', (req, res, next) => {
 });
 
 app.post('/api/auth/wanted-post', uploadsMiddleware, (req, res, next) => {
-  const { title, isbn, comments, userId } = req.body;
+  const { title, isbn, comments, userId, city, state } = req.body;
   if (!title || !isbn || !comments) {
     throw new ClientError(401, 'Post must include an image, title, isbn, and comments');
   }
   const url = '/images' + '/' + req.file.filename;
   const sql = `
-    insert into "wants" ("wantTitle", "wantPhotoFile", "wantContent", "isbn", "userId")
-    values ($1, $2, $3, $4, $5)
+    insert into "wants" ("wantTitle", "wantPhotoFile", "wantContent", "isbn", "userId", "city", "state")
+    values ($1, $2, $3, $4, $5, $6, $7)
     returning *
   `;
-  const params = [title, url, comments, isbn, userId];
+  const params = [title, url, comments, isbn, userId, city, state];
   db.query(sql, params)
     .then(result => {
       const [want] = result.rows;
@@ -98,22 +100,56 @@ app.post('/api/auth/wanted-post', uploadsMiddleware, (req, res, next) => {
 });
 
 app.post('/api/auth/sale-post', uploadsMiddleware, (req, res, next) => {
-  const { title, isbn, comments, userId } = req.body;
+  const { title, isbn, comments, userId, city, state } = req.body;
   if (!title || !isbn || !comments) {
     throw new ClientError(401, 'Post must include an image, title, isbn, and comments');
   }
   const url = '/images' + '/' + req.file.filename;
   const sql = `
-    insert into "sales" ("saleTitle", "salePhotoFile", "saleContent", "isbn", "userId")
-    values ($1, $2, $3, $4, $5)
+    insert into "sales" ("saleTitle", "salePhotoFile", "saleContent", "isbn", "userId", "city", "state")
+    values ($1, $2, $3, $4, $5, $6, $7)
     returning *
   `;
-  const params = [title, url, comments, isbn, userId];
+  const params = [title, url, comments, isbn, userId, city, state];
   db.query(sql, params)
     .then(result => {
       const [sale] = result.rows;
       res.status(201).json(sale);
     })
+    .catch(err => next(err));
+});
+
+app.get('/api/auth/sales', (req, res, next) => {
+  const sql = `
+         select "saleId",
+                "saleTitle",
+                "salePhotoFile",
+                "saleContent",
+                "userId",
+                "isbn",
+                "city",
+                "state"
+              from "sales"
+  `;
+  db.query(sql)
+    .then(result => res.json(result.rows))
+    .catch(err => next(err));
+});
+
+app.get('/api/auth/wants', (req, res, next) => {
+  const sql = `
+    select "wantId",
+          "wantTitle",
+          "wantPhotoFile",
+          "wantContent",
+          "userId",
+          "isbn",
+          "city",
+          "state"
+        from "wants"
+  `;
+  db.query(sql)
+    .then(result => res.json(result.rows))
     .catch(err => next(err));
 });
 

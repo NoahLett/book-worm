@@ -9,6 +9,8 @@ import Authentication from './pages/sign-in';
 import parseRoute from './lib/parse-route';
 import topics from './lib/data';
 import PostForm from './pages/post-form';
+import ForSale from './pages/for-sale';
+import Wanted from './pages/wanted';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -59,6 +61,12 @@ export default class App extends React.Component {
     }
     if (path === 'post-form') {
       return <PostForm/>;
+    }
+    if (path === 'for-sale') {
+      return <ForSale/>;
+    }
+    if (path === 'wanted') {
+      return <Wanted/>;
     }
   }
 

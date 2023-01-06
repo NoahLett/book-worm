@@ -44,6 +44,8 @@ export default class PostForm extends React.Component {
       formData.append('isbn', this.state.isbn);
       formData.append('comments', this.state.comments);
       formData.append('userId', user.userId);
+      formData.append('city', user.city);
+      formData.append('state', user.state);
       fetch('/api/auth/wanted-post', {
         method: 'POST',
         body: formData
@@ -66,6 +68,8 @@ export default class PostForm extends React.Component {
       formData.append('isbn', this.state.isbn);
       formData.append('comments', this.state.comments);
       formData.append('userId', user.userId);
+      formData.append('city', user.city);
+      formData.append('state', user.state);
       fetch('/api/auth/sale-post', {
         method: 'POST',
         body: formData

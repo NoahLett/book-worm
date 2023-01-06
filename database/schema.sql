@@ -30,6 +30,8 @@ CREATE TABLE "public"."wants" (
   "createdAt" timestamptz(6) NOT NULL DEFAULT now(),
 	"userId" integer NOT NULL,
 	"isbn" TEXT NOT NULL,
+  "city" TEXT NOT NULL,
+  "state" TEXT NOT NULL,
 	CONSTRAINT "wants_pk" PRIMARY KEY ("wantId")
 ) WITH (
   OIDS=FALSE
@@ -45,6 +47,8 @@ CREATE TABLE "public"."sales" (
 	"createdAt" timestamptz(6) NOT NULL DEFAULT now(),
 	"userId" integer NOT NULL,
 	"isbn" TEXT NOT NULL,
+  "city" TEXT NOT NULL,
+  "state" TEXT NOT NULL,
 	CONSTRAINT "sales_pk" PRIMARY KEY ("saleId")
 ) WITH (
   OIDS=FALSE
