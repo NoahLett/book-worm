@@ -10,7 +10,7 @@ const styles = {
     backgroundColor: '#0096c7',
     borderRadius: '10px'
   },
-  dots: {
+  icons: {
     cursor: 'pointer'
   }
 };
@@ -88,8 +88,9 @@ class Want extends React.Component {
         <div className='card mb-4 shadow-sm'>
           <img className='card-img-top py-3 bg-secondary' src={wantPhotoFile} alt={wantTitle} style={styles.image} />
           <div className='card-body'>
-            <div className='d-flex justify-content-end'>
-              <i className="fa-solid fa-ellipsis fs-3" style={styles.dots} />
+            <div className='d-flex justify-content-end my-1'>
+              <i className="fa-solid fa-pencil fs-5 mx-2" style={styles.icons} />
+              <i className='fa-solid fa-trash fs-5 mx-2' style={styles.icons} />
             </div>
             <h5 className='card-title'>{wantTitle}</h5>
             <h6 className='card-text text-secondary'>{`ISBN: ${isbn}`}</h6>

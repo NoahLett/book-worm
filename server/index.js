@@ -153,6 +153,48 @@ app.get('/api/auth/wants', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.delete('/api/auth/delete/sales/:saleId', (req, res, next) => {
+  const saleId = Number(req.params.saleId);
+  if (!saleId) {
+    throw new ClientError(400, 'saleId must be a positive integer');
+  }
+  const sql = `
+    delete
+        from "sales"
+      where "saleId" = $1
+    returning *
+  `;
+  const params = [saleId];
+  db.query(sql, params)
+    .then(result => {
+      if (!result.rows[0]) {
+        throw new ClientError(404, `cannot find product with saleId ${saleId}`);
+      }
+      res.status(200).json(result.rows[0]);
+    });
+});
+
+app.delete('/api/auth/delete/wants/:wantId', (req, res, next) => {
+  const wantId = Number(req.params.wantId);
+  if (!wantId) {
+    throw new ClientError(400, 'saleId must be a positive integer');
+  }
+  const sql = `
+    delete
+        from "wants"
+      where "wantId" = $1
+    returning *
+  `;
+  const params = [wantId];
+  db.query(sql, params)
+    .then(result => {
+      if (!result.rows[0]) {
+        throw new ClientError(404, `cannot find product with wantId ${wantId}`);
+      }
+      res.status(200).json(result.rows[0]);
+    });
+});
+
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
