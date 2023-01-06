@@ -121,8 +121,6 @@ app.post('/api/auth/sale-post', uploadsMiddleware, (req, res, next) => {
 
 app.get('/api/auth/sales', (req, res, next) => {
   const sql = `
-    select *
-      from (
          select "saleId",
                 "saleTitle",
                 "salePhotoFile",

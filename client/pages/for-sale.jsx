@@ -1,5 +1,16 @@
 import React from 'react';
 
+const styles = {
+  image: {
+    height: '280px',
+    objectFit: 'contain'
+  },
+  textBox: {
+    backgroundColor: '#0096c7',
+    borderRadius: '10px'
+  }
+};
+
 export default class ForSale extends React.Component {
   constructor(props) {
     super(props);
@@ -16,17 +27,19 @@ export default class ForSale extends React.Component {
 
   render() {
     return (
-      <div className='container'>
+      <div className='container py-4'>
         <h1>Books for Sale and Trade</h1>
         <hr/>
-        <div className='row'>
-          {
+        <div className='container bg-light p-4 rounded-3'>
+          <div className='row'>
+            {
             this.state.sales.map(sale => (
               <div key={sale.saleId} className="col-12 col-md-6 col-lg-4">
                 <Sale sale={sale}/>
               </div>
             ))
           }
+          </div>
         </div>
       </div>
     );
@@ -37,14 +50,14 @@ function Sale(props) {
   const { saleTitle, salePhotoFile, saleContent, isbn, city, state } = props.sale;
   return (
     <div className='card mb-4 shadow-sm'>
-      <img src={salePhotoFile} alt={saleTitle} />
+      <img className='card-img-top py-3 bg-secondary' src={salePhotoFile} alt={saleTitle} style={styles.image}/>
       <div className='card-body'>
         <h5 className='card-title'>{saleTitle}</h5>
-        <h6 className='card-text text-secondary'>{isbn}</h6>
-        <div className='content-box'>
-          <p className='content-text'>{saleContent}</p>
+        <h6 className='card-text text-secondary'>{`ISBN: ${isbn}`}</h6>
+        <div style={styles.textBox}>
+          <p className='text-white p-3'>{saleContent}</p>
         </div>
-        <p className='card-text text-secondary'>{`${city}, ${state}`}</p>
+        <p className='card-text text-secondary text-end'>{`${city}, ${state}`}</p>
       </div>
     </div>
   );

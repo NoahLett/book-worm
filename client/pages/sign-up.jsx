@@ -59,7 +59,7 @@ export default class Registration extends React.Component {
     fetch('/api/auth/sign-up', req)
       .then(res => res.json())
       .then(result => {
-        window.location.hash = '';
+        window.location.hash = '#sign-in';
       });
   }
 
