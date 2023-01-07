@@ -21,7 +21,7 @@ export default class ForSale extends React.Component {
     this.state = {
       sales: []
     };
-    this.handleDelete = this.handleDelete.bind(this);
+    this.handleSaleDelete = this.handleSaleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -30,7 +30,7 @@ export default class ForSale extends React.Component {
       .then(sales => this.setState({ sales }));
   }
 
-  handleDelete(event) {
+  handleSaleDelete(event) {
     fetch(`/api/auth/delete/sales/${event.target.id}`, {
       method: 'DELETE'
     })
