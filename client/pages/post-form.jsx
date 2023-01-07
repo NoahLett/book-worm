@@ -82,7 +82,7 @@ export default class PostForm extends React.Component {
           this.setState({ postType: 'sale' });
         })
         .catch(err => console.error(err));
-      window.location.hash = '';
+      window.location.hash = '#for-sale';
     }
   }
 
