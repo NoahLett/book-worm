@@ -11,6 +11,7 @@ import topics from './lib/data';
 import PostForm from './pages/post-form';
 import ForSale from './pages/for-sale';
 import Wanted from './pages/wanted';
+import EditForm from './pages/edit-form';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -67,6 +68,9 @@ export default class App extends React.Component {
     }
     if (path === 'wanted') {
       return <Wanted/>;
+    }
+    if (path === 'edit-form') {
+      return <EditForm/>;
     }
   }
 

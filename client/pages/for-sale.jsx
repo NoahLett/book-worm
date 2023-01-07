@@ -11,7 +11,8 @@ const styles = {
     borderRadius: '10px'
   },
   icons: {
-    cursor: 'pointer'
+    cursor: 'pointer',
+    color: 'black'
   }
 };
 
@@ -21,7 +22,7 @@ export default class ForSale extends React.Component {
     this.state = {
       sales: []
     };
-    this.handleSaleDelete = this.handleSaleDelete.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -30,7 +31,7 @@ export default class ForSale extends React.Component {
       .then(sales => this.setState({ sales }));
   }
 
-  handleSaleDelete(event) {
+  handleClick(event) {
     fetch(`/api/auth/delete/sales/${event.target.id}`, {
       method: 'DELETE'
     })
@@ -48,7 +49,7 @@ export default class ForSale extends React.Component {
             {
             this.state.sales.map(sale => (
               <div key={sale.saleId} className="col-12 col-md-6 col-lg-4">
-                <Sale id={this.id} onClick={this.handleDelete} sale={sale}/>
+                <Sale id={this.id} onClick={this.handleClick} sale={sale}/>
               </div>
             ))
           }
@@ -98,7 +99,7 @@ class Sale extends React.Component {
           <img className='card-img-top py-3 bg-secondary' src={salePhotoFile} alt={saleTitle} style={styles.image} />
           <div className='card-body'>
             <div className='d-flex justify-content-end'>
-              <i className="fa-solid fa-pencil fs-5 mx-2" style={styles.icons} />
+              <a href='#edit-form'><i className="fa-solid fa-pencil fs-5 mx-2" style={styles.icons} /></a>
               <i className="fa-solid fa-trash fs-5 mx-2" onClick={this.props.onClick} style={styles.icons} id={saleId} />
             </div>
             <h5 className='card-title'>{saleTitle}</h5>
