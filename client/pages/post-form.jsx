@@ -82,7 +82,7 @@ export default class PostForm extends React.Component {
           this.setState({ postType: 'sale' });
         })
         .catch(err => console.error(err));
-      window.location.hash = '';
+      window.location.hash = '#for-sale';
     }
   }
 
@@ -98,7 +98,7 @@ export default class PostForm extends React.Component {
     }
     return (
       <div className='d-flex flex-column justify-content-center align-items-center'>
-        <h1 className='text-center my-5'>Create or Edit your Post!</h1>
+        <h1 className='text-center my-5'>Create your Post!</h1>
         <div className='d-flex justify-content-around align-items-center bg-light rounded-3 w-50'>
           <div className='col-3 mx-4'>
             <img className='post-image border border-secondary rounded-3' src={this.state.image} alt="post-image" />
