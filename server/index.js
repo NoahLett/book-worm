@@ -153,6 +153,22 @@ app.get('/api/auth/wants', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// app.get('/api/auth/edit/sale/:postId', (req, res, next) => {
+//   const postId = Number(req.params.postId);
+//   if (!postId) {
+//     throw new ClientError(400, 'postId must be a positive integer');
+//   }
+//   const sql = `
+//     select "saleTitle",
+//           "salePhotoFile",
+//           "saleContent",
+//           "isbn"
+//         from "sales"
+//       where "saleId" = $1
+//   `;
+//   const params = [postId];
+// });
+
 app.delete('/api/auth/delete/sales/:saleId', (req, res, next) => {
   const saleId = Number(req.params.saleId);
   if (!saleId) {
@@ -177,7 +193,7 @@ app.delete('/api/auth/delete/sales/:saleId', (req, res, next) => {
 app.delete('/api/auth/delete/wants/:wantId', (req, res, next) => {
   const wantId = Number(req.params.wantId);
   if (!wantId) {
-    throw new ClientError(400, 'saleId must be a positive integer');
+    throw new ClientError(400, 'wantId must be a positive integer');
   }
   const sql = `
     delete
@@ -193,6 +209,62 @@ app.delete('/api/auth/delete/wants/:wantId', (req, res, next) => {
       }
       res.status(200).json(result.rows[0]);
     });
+});
+
+app.put('/api/auth/update-sale-post/:saleId', uploadsMiddleware, (req, res, next) => {
+  const { title, isbn, comments } = req.body;
+  if (!title || !isbn || !comments) {
+    throw new ClientError(401, 'Post must include an image, title, isbn, and comments');
+  }
+  const url = '/images' + '/' + req.file.filename;
+  const saleId = Number(req.params.saleId);
+  if (!saleId) {
+    throw new ClientError(400, 'saleId must be a positive integer');
+  }
+  const sql = `
+    update "sales"
+      set "saleTitle" = $1,
+          "salePhotoFile" = $2,
+          "saleContent" = $3,
+          "isbn" = $4
+      where "saleId" = $5
+    returning *
+  `;
+  const params = [title, url, comments, isbn, saleId];
+  db.query(sql, params)
+    .then(result => {
+      const [sale] = result.rows;
+      res.status(201).json(sale);
+    })
+    .catch(err => next(err));
+});
+
+app.put('/api/auth/update-wanted-post/:wantId', uploadsMiddleware, (req, res, next) => {
+  const { title, isbn, comments } = req.body;
+  if (!title || !isbn || !comments) {
+    throw new ClientError(401, 'Post must include an image, title, isbn, and comments');
+  }
+  const url = '/images' + '/' + req.file.filename;
+  const wantId = Number(req.params.wantId);
+  if (!wantId) {
+    throw new ClientError(400, 'wantId must be a positive integer');
+  }
+  const sql = `
+    update "wants"
+      set "wantTitle" = $1,
+          "wantPhotoFile" = $2,
+          "wantContent" = $3,
+          "isbn" = $4
+      where "wantId" = $5
+    returning *
+  `;
+  const params = [title, url, comments, isbn, wantId];
+  db.query(sql, params)
+    .then(result => {
+      const [sale] = result.rows;
+      res.status(201).json(sale);
+    })
+    .catch(err => next(err));
 });
 
 app.use(errorMiddleware);

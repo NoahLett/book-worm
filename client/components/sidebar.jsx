@@ -1,5 +1,17 @@
 import React from 'react';
 
+const styles = {
+  bars: {
+    fontSize: '1.7rem',
+    cursor: 'pointer'
+  },
+  menuLink: {
+    textDecoration: 'none',
+    fontSize: '1.25rem',
+    color: 'black'
+  }
+};
+
 export default class Drawer extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +32,7 @@ export default class Drawer extends React.Component {
     if (!this.state.isClicked) {
       return (
         <div className='drawer d-flex align-items-center'>
-          <i onClick={this.openMenu} className="fa-sharp fa-solid fa-bars"/>
+          <i onClick={this.openMenu} className="fa-sharp fa-solid fa-bars" style={styles.bars}/>
           <div className='sidebar inactive'>
             <ul>
               <li className='menu-item'><a onClick={this.closeMenu} className='menu-link' href="#">Home</a></li>
@@ -35,7 +47,7 @@ export default class Drawer extends React.Component {
     } else {
       return (
         <div className='drawer d-flex align-items-center'>
-          <i onClick={this.openMenu} className="fa-sharp fa-solid fa-bars" />
+          <i onClick={this.openMenu} className="fa-sharp fa-solid fa-bars" style={styles.bars} />
           <div className='sidebar active'>
             <ul className='px-0'>
               <li className='menu-item'>
@@ -43,23 +55,23 @@ export default class Drawer extends React.Component {
               </li>
               <li className='menu-item py-2'>
                 <i className="fa-solid fa-house me-3" />
-                <a onClick={this.closeMenu} className='menu-link' href="#">Home</a>
+                <a onClick={this.closeMenu} style={styles.menuLink} className='menu-link' href="#">Home</a>
               </li>
               <li className='menu-item py-2'>
                 <i className="fa-solid fa-arrow-trend-up me-3 fw-bolder" />
-                <a onClick={this.closeMenu} className='menu-link' href="#wanted">Wanted Books</a>
+                <a onClick={this.closeMenu} style={styles.menuLink} className='menu-link' href="#wanted">Wanted Books</a>
               </li>
               <li className='menu-item py-2'>
                 <i className="fa-solid fa-tag me-3" />
-                <a onClick={this.closeMenu} className='menu-link' href="#for-sale">Books for Sale</a>
+                <a onClick={this.closeMenu} style={styles.menuLink} className='menu-link' href="#for-sale">Books for Sale</a>
               </li>
               <li className='menu-item py-2'>
                 <i className="fa-sharp fa-solid fa-feather-pointed me-3" />
-                <a onClick={this.closeMenu} className='menu-link' href="#post-form">Create a Post</a>
+                <a onClick={this.closeMenu} style={styles.menuLink} className='menu-link' href="#post-form">Create a Post</a>
               </li>
               <li className='menu-item py-2'>
                 <i className="fa-solid fa-question me-3 fw-bolder" />
-                <a onClick={this.closeMenu} className='menu-link' href="#faq">FAQ</a>
+                <a onClick={this.closeMenu} style={styles.menuLink} className='menu-link' href="#faq">FAQ</a>
               </li>
             </ul>
           </div>

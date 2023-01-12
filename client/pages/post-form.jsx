@@ -3,6 +3,14 @@ import AppContext from '../lib/app-context';
 import UserModal from '../components/user-modal';
 import Home from './home';
 
+const styles = {
+  postImage: {
+    width: '20rem',
+    height: '20rem',
+    objectFit: 'cover'
+  }
+};
+
 export default class PostForm extends React.Component {
   constructor(props) {
     super(props);
@@ -31,7 +39,6 @@ export default class PostForm extends React.Component {
       this.setState({ image: event.target.result });
     };
     reader.readAsDataURL(file);
-
   }
 
   handleSubmit(event) {
@@ -58,7 +65,8 @@ export default class PostForm extends React.Component {
           this.setState({ postType: 'sale' });
         })
         .catch(err => console.error(err));
-      window.location.hash = '';
+      window.location.hash = '#wanted';
+      window.location.reload(false);
     } else if (this.state.postType === 'sale') {
       event.preventDefault();
       const { user } = this.context;
@@ -83,6 +91,7 @@ export default class PostForm extends React.Component {
         })
         .catch(err => console.error(err));
       window.location.hash = '#for-sale';
+      window.location.reload(false);
     }
   }
 
@@ -99,9 +108,9 @@ export default class PostForm extends React.Component {
     return (
       <div className='d-flex flex-column justify-content-center align-items-center'>
         <h1 className='text-center my-5'>Create your Post!</h1>
-        <div className='d-flex justify-content-around align-items-center bg-light rounded-3 w-50'>
+        <div className='d-flex justify-content-around align-items-center bg-light border rounded-3 w-50 shadow-sm'>
           <div className='col-3 mx-4'>
-            <img className='post-image border border-secondary rounded-3' src={this.state.image} alt="post-image" />
+            <img className='border border-secondary rounded-3' src={this.state.image} alt="post-image" style={styles.postImage} />
           </div>
           <div className='col-6 my-3'>
             <form className='post-form m-4' onSubmit={this.handleSubmit}>

@@ -1,31 +1,17 @@
 #root {
   max-width: 100%;
   height: 100%;
-  background: linear-gradient(160deg, rgba(255, 255, 255, 1) 0%, rgba(0, 150, 199, 1) 115%);
 }
 
-.main-container {
-  width: 100%;
-  padding-left: 3rem;
-  padding-right: 3rem;
+.bookworm,
+.welcome {
+  text-shadow: 1.5px 0 0 black, 0 -1px 0 black, 0 1px 0 black, -1px 0 0 black;
 }
 
-.bookworm {
-  font-family: Pacifico, cursive;
-  font-size: 3.25rem;
-  color: #0096c7;
-  text-decoration: none;
-  text-shadow: 1.5px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
-}
-
+.fa-user,
 .user {
   color: black;
   font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.fa-bars {
-  font-size: 1.7rem;
   cursor: pointer;
 }
 
@@ -43,16 +29,6 @@
 .menu-item:hover:not(:first-child) {
   background-color: #0096c7;
   border-radius: 5px;
-  color: white;
-}
-
-.menu-link {
-  text-decoration: none;
-  font-size: 1.25rem;
-  color: black;
-}
-
-.menu-link:hover {
   color: white;
 }
 
@@ -81,72 +57,6 @@
   transform: translateX(55%);
 }
 
-.home-header-box {
-  width: 50%;
-  height: 40rem;
-}
-
-.home-header {
-  color: #0096c7;
-  font-weight: bold;
-  font-size: 4rem;
-  font-family: Roboto, sans-serif;
-  text-shadow: 1.5px 0 0 white, 0 -1px 0 white, 0 1px 0 white, -1px 0 0 white;
-}
-
-.carousel-box {
-  background-color: #f1f3f5;
-  border: 2px solid darkgray;
-  border-radius: 10px;
-}
-
-.carousel-image {
-  width: 20rem;
-  height: 12rem;
-  border: 1px solid darkgray;
-  border-radius: 10px;
-}
-
-.fa-chevron-right,
-.fa-chevron-left,
-.fa-circle {
-  cursor: pointer;
-}
-
-.quote {
-  font-family: Roboto, sans-serif;
-  color: darkslategray;
-}
-
-.faq-header {
-  margin-top: 4rem;
-  font-family: Roboto, sans-serif;
-  font-weight: bold;
-}
-
-.acc-box {
-  width: 100%;
-}
-
-.accordion {
-  margin-top: 4rem;
-  width: 70%;
-  border-radius: 20px;
-}
-
-.acc-header-box {
-  border: 1px solid lightgray;
-  border-radius: 20px;
-  margin: 1rem;
-  cursor: pointer;
-  background-color: #f1f3f5;
-}
-
-.acc-text-box {
-  border: 1px solid #0096c7;
-  border-radius: 20px;
-}
-
 .valid {
   border: 2px solid limegreen;
 }
@@ -155,26 +65,7 @@
   border: 2px solid red;
 }
 
-.form-container {
-  background-color: #f1f3f5;
-  width: 30%;
-  border: 1px solid lightgray;
-  border-radius: 10px;
-}
-
-.sign-up-form {
-  width: 20rem;
-  background-color: #f1f3f5;
-}
-
 .modal-overlay {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   background-color: rgb(0 0 0 / 50%);
 }
 
@@ -192,18 +83,6 @@
   border-radius: 10px;
 }
 
-.post-image {
-  width: 20rem;
-  height: 20rem;
-  object-fit: cover;
-}
-
-@media screen and (max-width: 1200px) {
-  .form-container {
-    width: 45%;
-  }
-}
-
 @media screen and (max-width: 760px) {
   .home-header {
     font-size: 3.5rem;
@@ -212,14 +91,6 @@
   .main-container {
     padding-left: 1rem;
     padding-right: 1rem;
-  }
-
-  .accordion {
-    width: 100%;
-  }
-
-  .form-container {
-    width: 100%;
   }
 
   .sidebar {

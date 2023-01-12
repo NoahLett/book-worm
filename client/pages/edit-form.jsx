@@ -1,11 +1,10 @@
 import React from 'react';
-import AppContext from '../lib/app-context';
 
 export default class EditForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      image: 'https://www.kurin.com/wp-content/uploads/placeholder-square.jpg',
+      image: '',
       title: '',
       isbn: '',
       comments: '',
@@ -16,6 +15,12 @@ export default class EditForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.fileInputChange = this.fileInputChange.bind(this);
   }
+
+  // componentDidMount() {
+  //   const urlArray = window.location.href.split('/');
+  //   const postId = urlArray[4];
+  //   fetch(`/api/auth/edit/${type}/${postId}`);
+  // }
 
   handleChange(event) {
     const { name, value } = event.target;
@@ -29,7 +34,6 @@ export default class EditForm extends React.Component {
       this.setState({ image: event.target.result });
     };
     reader.readAsDataURL(file);
-
   }
 
   handleSubmit(event) {
@@ -113,7 +117,7 @@ export default class EditForm extends React.Component {
                     accept=".png, .jpg, .jpeg" />
                 </div>
                 <div className='d-flex justify-content-end w-100'>
-                  <button type='submit' className='btn btn-outline-info'>Submit Post</button>
+                  <button type='submit' className='btn btn-outline-info'>Update Post</button>
                 </div>
               </div>
             </form>
@@ -123,4 +127,3 @@ export default class EditForm extends React.Component {
     );
   }
 }
-EditForm.contextType = AppContext;

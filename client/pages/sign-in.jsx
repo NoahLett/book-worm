@@ -1,6 +1,15 @@
 import React from 'react';
 import AppContext from '../lib/app-context';
 
+const styles = {
+  formContainer: {
+    backgroundColor: '#f1f3f5',
+    width: '30rem',
+    border: '1px solid lightgray',
+    borderRadius: '10px'
+  }
+};
+
 export default class Authentication extends React.Component {
   constructor(props) {
     super(props);
@@ -44,8 +53,8 @@ export default class Authentication extends React.Component {
         </div>
         <h3 className='text-center'><strong>Please sign in to gain access to user features.</strong></h3>
         <div className='d-flex justify-content-center'>
-          <div className='form-container d-flex justify-content-center mt-4 py-3'>
-            <form className='sign-in-form w-100 px-5' onSubmit={this.handleSubmit}>
+          <div className='d-flex justify-content-center mx-1 mt-4 py-3' style={styles.formContainer}>
+            <form className='w-75' onSubmit={this.handleSubmit}>
               <div>
                 <label htmlFor="username" className='form-label mt-2'>Username</label>
                 <input

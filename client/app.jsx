@@ -19,10 +19,14 @@ export default class App extends React.Component {
     this.state = {
       user: null,
       isAuthorizing: true,
-      route: parseRoute(window.location.hash)
+      route: parseRoute(window.location.hash),
+      sale: null,
+      want: null
     };
     this.handleSignIn = this.handleSignIn.bind(this);
     this.handleSignOut = this.handleSignOut.bind(this);
+    this.transferSaleId = this.transferSaleId.bind(this);
+    this.transferWantId = this.transferWantId.bind(this);
   }
 
   componentDidMount() {
@@ -44,6 +48,16 @@ export default class App extends React.Component {
   handleSignOut() {
     window.localStorage.removeItem('react-context-jwt');
     this.setState({ user: null });
+  }
+
+  transferSaleId(id) {
+    this.setState({ sale: id });
+    window.location.hash = `edit-form/sale/${id}`;
+  }
+
+  transferWantId(id) {
+    this.setState({ want: id });
+    window.location.hash = `edit-form/sale/${id}`;
   }
 
   renderPage() {
@@ -69,7 +83,7 @@ export default class App extends React.Component {
     if (path === 'wanted') {
       return <Wanted/>;
     }
-    if (path === 'edit-form') {
+    if (path === `edit-form/sale/${this.state.sale}` || path === `edit-form/want/${this.state.want}`) {
       return <EditForm/>;
     }
   }
@@ -77,11 +91,11 @@ export default class App extends React.Component {
   render() {
     if (this.state.isAuthorizing) return null;
     const { user, route } = this.state;
-    const { handleSignIn, handleSignOut } = this;
-    const contextValue = { user, route, handleSignIn, handleSignOut };
+    const { handleSignIn, handleSignOut, transferSaleId, transferWantId } = this;
+    const contextValue = { user, route, handleSignIn, handleSignOut, transferSaleId, transferWantId };
     return (
       <AppContext.Provider value={contextValue}>
-        <div className='main-container'>
+        <div className='w-100'>
           <Header/>
           { this.renderPage() }
         </div>

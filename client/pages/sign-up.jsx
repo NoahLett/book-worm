@@ -1,5 +1,17 @@
 import React from 'react';
 
+const styles = {
+  formContainer: {
+    backgroundColor: '#f1f3f5',
+    width: '30rem',
+    border: '1px solid lightgray',
+    borderRadius: '10px'
+  },
+  signupForm: {
+    width: '20rem'
+  }
+};
+
 export default class Registration extends React.Component {
   constructor(props) {
     super(props);
@@ -69,12 +81,12 @@ export default class Registration extends React.Component {
     return (
       <div>
         <div className='d-flex justify-content-center'>
-          <h1 className='text-center my-5 w-50'><strong>Welcome to BookWorm!</strong></h1>
+          <h1 className='text-center mt-5 w-50'><strong>Welcome to BookWorm!</strong></h1>
         </div>
-        <h3 className='text-center'><strong>{'Let\'s get you signed up.'}</strong></h3>
+        <h3 className='text-center mt-2 mb-5'><strong>{'Let\'s get you signed up.'}</strong></h3>
         <div className='d-flex justify-content-center mt-4'>
-          <div className='form-container d-flex justify-content-center py-3'>
-            <form className='sign-up-form' onSubmit={this.handleSubmit}>
+          <div className='d-flex justify-content-center mx-1 mb-1 py-3' style={styles.formContainer}>
+            <form className='sign-up-form' style={styles.signupForm} onSubmit={this.handleSubmit}>
               <div>
                 <label htmlFor="firstName" className="form-label">First Name</label>
                 <input
@@ -200,7 +212,7 @@ export default class Registration extends React.Component {
             className={`form-control ${check}`} />
               </div>
               <div className='d-flex justify-content-end'>
-                <button type="submit" className='btn btn-outline-info mt-2' disabled={stop}>Sign Up</button>
+                <button type="submit" className='btn btn-outline-info mt-3' disabled={stop}>Sign Up</button>
               </div>
               <div>
                 <p className='text-center pt-4'>Already a user? Click <a href='#sign-in' className='text-info text-decoration-none'>here</a> to sign in!</p>

@@ -32,11 +32,16 @@ export default class ForSale extends React.Component {
   }
 
   handleClick(event) {
-    fetch(`/api/auth/delete/sales/${event.target.id}`, {
-      method: 'DELETE'
-    })
-      .then(res => res.json())
-      .then(window.location.reload(false));
+    const { transferSaleId } = this.context;
+    if (event.target.className === 'fa-solid fa-trash fs-5 mx-2') {
+      fetch(`/api/auth/delete/sales/${event.target.id}`, {
+        method: 'DELETE'
+      })
+        .then(res => res.json())
+        .then(window.location.reload(false));
+    } else if (event.target.className === 'fa-solid fa-pencil fs-5 mx-2') {
+      transferSaleId(event.target.id);
+    }
   }
 
   render() {
@@ -59,6 +64,7 @@ export default class ForSale extends React.Component {
     );
   }
 }
+ForSale.contextType = AppContext;
 
 class Sale extends React.Component {
 
@@ -99,7 +105,7 @@ class Sale extends React.Component {
           <img className='card-img-top py-3 bg-secondary' src={salePhotoFile} alt={saleTitle} style={styles.image} />
           <div className='card-body'>
             <div className='d-flex justify-content-end'>
-              <a href='#edit-form'><i className="fa-solid fa-pencil fs-5 mx-2" style={styles.icons} /></a>
+              <i className="fa-solid fa-pencil fs-5 mx-2" onClick={this.props.onClick} id={saleId} style={styles.icons} />
               <i className="fa-solid fa-trash fs-5 mx-2" onClick={this.props.onClick} style={styles.icons} id={saleId} />
             </div>
             <h5 className='card-title'>{saleTitle}</h5>
