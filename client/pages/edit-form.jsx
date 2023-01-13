@@ -7,8 +7,7 @@ export default class EditForm extends React.Component {
       image: '',
       title: '',
       isbn: '',
-      comments: '',
-      postType: 'sale'
+      comments: ''
     };
     this.fileInputRef = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,11 +15,30 @@ export default class EditForm extends React.Component {
     this.fileInputChange = this.fileInputChange.bind(this);
   }
 
-  // componentDidMount() {
-  //   const urlArray = window.location.href.split('/');
-  //   const postId = urlArray[4];
-  //   fetch(`/api/auth/edit/${type}/${postId}`);
-  // }
+  componentDidMount() {
+    const urlArray = window.location.href.split('/');
+    const postId = urlArray[5];
+    const type = urlArray[4];
+    if (type === 'sale') {
+      fetch(`/api/auth/edit/sale/${postId}`)
+        .then(res => res.json())
+        .then(post => {
+          this.setState({ image: post.salePhotoFile });
+          this.setState({ title: post.saleTitle });
+          this.setState({ isbn: post.isbn });
+          this.setState({ comments: post.saleContent });
+        });
+    } else if (type === 'want') {
+      fetch(`/api/auth/edit/want/${postId}`)
+        .then(res => res.json())
+        .then(post => {
+          this.setState({ image: post.wantPhotoFile });
+          this.setState({ title: post.wantTitle });
+          this.setState({ isbn: post.isbn });
+          this.setState({ comments: post.wantContent });
+        });
+    }
+  }
 
   handleChange(event) {
     const { name, value } = event.target;
@@ -55,6 +73,7 @@ export default class EditForm extends React.Component {
                   <label htmlFor="title" className='form-label mt-2'>Title</label>
                   <input
                     required
+                    value={this.state.title}
                     autoFocus
                     id='title'
                     name='title'
@@ -66,6 +85,7 @@ export default class EditForm extends React.Component {
                   <label htmlFor="isbn" className='form-label mt-2'>ISBN (i.e.: xxx-x-xx-xxxxxx-x)</label>
                   <input
                     required
+                    value={this.state.isbn}
                     type="text"
                     name="isbn"
                     id="isbn"
@@ -76,36 +96,15 @@ export default class EditForm extends React.Component {
                   <label htmlFor="comments" className='form-label mt-2'>Comments</label>
                   <textarea
                     required
+                    value={this.state.comments}
                     name="comments"
                     id="comments"
                     maxLength="225"
                     onChange={this.handleChange}
                     className="form-control w-100" />
                 </div>
-                <div className='input-group d-flex justify-content-around w-50 my-4'>
-                  <div>
-                    <label htmlFor="sale" className='form-label me-2'>For Sale</label>
-                    <input
-                      value='sale'
-                      name='postType'
-                      id='postType'
-                      onChange={this.handleChange}
-                      type="radio"
-                      className='form-check-input' />
-                  </div>
-                  <div>
-                    <label htmlFor="want" className='form-label me-2'>Wanted</label>
-                    <input
-                      value='want'
-                      name="postType"
-                      id="postType"
-                      onChange={this.handleChange}
-                      type="radio"
-                      className='form-check-input' />
-                  </div>
-                </div>
                 <div>
-                  <div>
+                  <div className='mt-3'>
                     <label htmlFor="image-upload" className='form-label'>Image Upload</label>
                   </div>
                   <input
@@ -113,7 +112,7 @@ export default class EditForm extends React.Component {
                     type="file"
                     name='image'
                     ref={this.fileInputRef}
-                    onChange={this.fileInputChange}
+                    onChange={this.fileInputChanges}
                     accept=".png, .jpg, .jpeg" />
                 </div>
                 <div className='d-flex justify-content-end w-100'>
