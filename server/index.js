@@ -84,7 +84,7 @@ app.post('/api/auth/wanted-post', uploadsMiddleware, (req, res, next) => {
   if (!title || !isbn || !comments) {
     throw new ClientError(401, 'Post must include an image, title, isbn, and comments');
   }
-  const url = '/images' + '/' + req.file.filename;
+  const url = req.file.location;
   const sql = `
     insert into "wants" ("wantTitle", "wantPhotoFile", "wantContent", "isbn", "userId", "city", "state")
     values ($1, $2, $3, $4, $5, $6, $7)
@@ -104,7 +104,7 @@ app.post('/api/auth/sale-post', uploadsMiddleware, (req, res, next) => {
   if (!title || !isbn || !comments) {
     throw new ClientError(401, 'Post must include an image, title, isbn, and comments');
   }
-  const url = '/images' + '/' + req.file.filename;
+  const url = req.file.location;
   const sql = `
     insert into "sales" ("saleTitle", "salePhotoFile", "saleContent", "isbn", "userId", "city", "state")
     values ($1, $2, $3, $4, $5, $6, $7)
@@ -152,22 +152,6 @@ app.get('/api/auth/wants', (req, res, next) => {
     .then(result => res.json(result.rows))
     .catch(err => next(err));
 });
-
-// app.get('/api/auth/edit/sale/:postId', (req, res, next) => {
-//   const postId = Number(req.params.postId);
-//   if (!postId) {
-//     throw new ClientError(400, 'postId must be a positive integer');
-//   }
-//   const sql = `
-//     select "saleTitle",
-//           "salePhotoFile",
-//           "saleContent",
-//           "isbn"
-//         from "sales"
-//       where "saleId" = $1
-//   `;
-//   const params = [postId];
-// });
 
 app.delete('/api/auth/delete/sales/:saleId', (req, res, next) => {
   const saleId = Number(req.params.saleId);
