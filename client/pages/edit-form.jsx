@@ -55,7 +55,50 @@ export default class EditForm extends React.Component {
   }
 
   handleSubmit(event) {
-
+    const urlArray = window.location.href.split('/');
+    const postId = urlArray[5];
+    const type = urlArray[4];
+    if (type === 'sale') {
+      event.preventDefault();
+      const formData = new FormData();
+      formData.append('image', this.fileInputRef.current.files[0]);
+      formData.append('title', this.state.title);
+      formData.append('isbn', this.state.isbn);
+      formData.append('comments', this.state.comments);
+      fetch(`/api/auth/update-sale-post/${postId}`, {
+        method: 'PUT',
+        body: formData
+      })
+        .then(res => res.json())
+        .then(data => {
+          this.setState({ title: '' });
+          this.setState({ isbn: '' });
+          this.setState({ comments: '' });
+        })
+        .catch(err => console.error(err));
+      window.location.hash = '#for-sale';
+      window.location.reload(false);
+    } else if (type === 'want') {
+      event.preventDefault();
+      const formData = new FormData();
+      formData.append('image', this.fileInputRef.current.files[0]);
+      formData.append('title', this.state.title);
+      formData.append('isbn', this.state.isbn);
+      formData.append('comments', this.state.comments);
+      fetch(`/api/auth/update-wanted-post/${postId}`, {
+        method: 'PUT',
+        body: formData
+      })
+        .then(res => res.json())
+        .then(data => {
+          this.setState({ title: '' });
+          this.setState({ isbn: '' });
+          this.setState({ comments: '' });
+        })
+        .catch(err => console.error(err));
+      window.location.hash = '#wanted';
+      window.location.reload(false);
+    }
   }
 
   render() {

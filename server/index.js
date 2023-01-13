@@ -246,7 +246,7 @@ app.put('/api/auth/update-sale-post/:saleId', uploadsMiddleware, (req, res, next
   if (!title || !isbn || !comments) {
     throw new ClientError(401, 'Post must include an image, title, isbn, and comments');
   }
-  const url = '/images' + '/' + req.file.filename;
+  const url = req.file.location;
   const saleId = Number(req.params.saleId);
   if (!saleId) {
     throw new ClientError(400, 'saleId must be a positive integer');
@@ -274,7 +274,7 @@ app.put('/api/auth/update-wanted-post/:wantId', uploadsMiddleware, (req, res, ne
   if (!title || !isbn || !comments) {
     throw new ClientError(401, 'Post must include an image, title, isbn, and comments');
   }
-  const url = '/images' + '/' + req.file.filename;
+  const url = req.file.location;
   const wantId = Number(req.params.wantId);
   if (!wantId) {
     throw new ClientError(400, 'wantId must be a positive integer');
