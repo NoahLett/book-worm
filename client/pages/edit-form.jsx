@@ -155,7 +155,7 @@ export default class EditForm extends React.Component {
                     type="file"
                     name='image'
                     ref={this.fileInputRef}
-                    onChange={this.fileInputChanges}
+                    onChange={this.fileInputChange}
                     accept=".png, .jpg, .jpeg" />
                 </div>
                 <div className='d-flex justify-content-end w-100'>
