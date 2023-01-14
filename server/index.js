@@ -153,6 +153,52 @@ app.get('/api/auth/wants', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/auth/edit/sale/:saleId', (req, res, next) => {
+  const saleId = Number(req.params.saleId);
+  if (!saleId) {
+    throw new ClientError(400, 'saleId must be a positive integer');
+  }
+  const sql = `
+    select "saleTitle",
+          "salePhotoFile",
+          "saleContent",
+          "isbn"
+        from "sales"
+      where "saleId" = $1
+  `;
+  const params = [saleId];
+  db.query(sql, params)
+    .then(result => {
+      if (!result.rows[0]) {
+        throw new ClientError(404, `cannot find product with saleId ${saleId}`);
+      }
+      res.status(200).json(result.rows[0]);
+    });
+});
+
+app.get('/api/auth/edit/want/:wantId', (req, res, next) => {
+  const wantId = Number(req.params.wantId);
+  if (!wantId) {
+    throw new ClientError(400, 'wantId must be a positive integer');
+  }
+  const sql = `
+    select "wantTitle",
+          "wantPhotoFile",
+          "wantContent",
+          "isbn"
+        from "wants"
+      where "wantId" = $1
+  `;
+  const params = [wantId];
+  db.query(sql, params)
+    .then(result => {
+      if (!result.rows[0]) {
+        throw new ClientError(404, `cannot find product with wantId ${wantId}`);
+      }
+      res.status(200).json(result.rows[0]);
+    });
+});
+
 app.delete('/api/auth/delete/sales/:saleId', (req, res, next) => {
   const saleId = Number(req.params.saleId);
   if (!saleId) {
@@ -200,7 +246,7 @@ app.put('/api/auth/update-sale-post/:saleId', uploadsMiddleware, (req, res, next
   if (!title || !isbn || !comments) {
     throw new ClientError(401, 'Post must include an image, title, isbn, and comments');
   }
-  const url = '/images' + '/' + req.file.filename;
+  const url = req.file.location;
   const saleId = Number(req.params.saleId);
   if (!saleId) {
     throw new ClientError(400, 'saleId must be a positive integer');
@@ -228,7 +274,7 @@ app.put('/api/auth/update-wanted-post/:wantId', uploadsMiddleware, (req, res, ne
   if (!title || !isbn || !comments) {
     throw new ClientError(401, 'Post must include an image, title, isbn, and comments');
   }
-  const url = '/images' + '/' + req.file.filename;
+  const url = req.file.location;
   const wantId = Number(req.params.wantId);
   if (!wantId) {
     throw new ClientError(400, 'wantId must be a positive integer');

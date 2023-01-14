@@ -57,7 +57,7 @@ export default class App extends React.Component {
 
   transferWantId(id) {
     this.setState({ want: id });
-    window.location.hash = `edit-form/sale/${id}`;
+    window.location.hash = `edit-form/want/${id}`;
   }
 
   renderPage() {

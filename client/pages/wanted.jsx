@@ -21,7 +21,7 @@ export default class Wanted extends React.Component {
     this.state = {
       wants: []
     };
-    this.handleWantDelete = this.handleWantDelete.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -30,12 +30,17 @@ export default class Wanted extends React.Component {
       .then(wants => this.setState({ wants }));
   }
 
-  handleWantDelete(event) {
-    fetch(`/api/auth/delete/wants/${event.target.id}`, {
-      method: 'DELETE'
-    })
-      .then(res => res.json())
-      .then(window.location.reload(false));
+  handleClick(event) {
+    const { transferWantId } = this.context;
+    if (event.target.className === 'fa-solid fa-trash fs-5 mx-2') {
+      fetch(`/api/auth/delete/wants/${event.target.id}`, {
+        method: 'DELETE'
+      })
+        .then(res => res.json())
+        .then(window.location.reload(false));
+    } else if (event.target.className === 'fa-solid fa-pencil fs-5 mx-2') {
+      transferWantId(event.target.id);
+    }
   }
 
   render() {
@@ -48,7 +53,7 @@ export default class Wanted extends React.Component {
             {
             this.state.wants.map(want => (
               <div key={want.wantId} className="col-12 col-md-6 col-lg-4">
-                <Want id={this.id} onClick={this.handleWantDelete} want={want}/>
+                <Want id={this.id} onClick={this.handleClick} want={want}/>
               </div>
             ))
           }
@@ -58,6 +63,7 @@ export default class Wanted extends React.Component {
     );
   }
 }
+Wanted.contextType = AppContext;
 
 class Want extends React.Component {
 
@@ -98,7 +104,7 @@ class Want extends React.Component {
           <img className='card-img-top py-3 bg-secondary' src={wantPhotoFile} alt={wantTitle} style={styles.image} />
           <div className='card-body'>
             <div className='d-flex justify-content-end my-1'>
-              <i className="fa-solid fa-pencil fs-5 mx-2" style={styles.icons} />
+              <i className="fa-solid fa-pencil fs-5 mx-2" onClick={this.props.onClick} id={wantId} style={styles.icons} />
               <i className='fa-solid fa-trash fs-5 mx-2' onClick={this.props.onClick} style={styles.icons} id={wantId}/>
             </div>
             <h5 className='card-title'>{wantTitle}</h5>
