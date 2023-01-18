@@ -43,6 +43,11 @@ Try the application at [https://book-worm.noahlett.com](https://book-worm.noahle
 ![SGT React](assets/sign-in.gif)
 ![SGT React](assets/create-sale-post.gif)
 
+## Features to be Added
+
+- Users can search for a book on the "for sale" page by either ISBN or title
+- A loading spinner to be displayed while data is being relayed
+
 ## Development
 
 ### System Requirements
