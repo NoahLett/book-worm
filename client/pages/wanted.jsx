@@ -48,7 +48,7 @@ export default class Wanted extends React.Component {
       <div className='container py-4'>
         <h1>Wanted Books</h1>
         <hr />
-        <div className='container bg-light p-4 rounded-3'>
+        <div className='container bg-light p-4 rounded-3 shadow-lg'>
           <div className='row'>
             {
             this.state.wants.map(want => (

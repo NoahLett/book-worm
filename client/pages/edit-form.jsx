@@ -122,8 +122,8 @@ export default class EditForm extends React.Component {
       <div className='d-flex flex-column justify-content-center align-items-center'>
         <h1 className='text-center my-5' style={styles.header}>Edit your Post!</h1>
         <div className='d-flex flex-wrap justify-content-center align-items-center bg-secondary m-1 shadow-lg' style={styles.editBox}>
-          <div className='m-4'>
-            <img className='post-image border border-secondary rounded-3' src={this.state.image} alt="post-image" />
+          <div className='m-5'>
+            <img className='post-image border border-secondary rounded-3' src={this.state.image} alt="post-image" style={styles.postImage} />
           </div>
           <div>
             <form className='post-form m-4' onSubmit={this.handleSubmit}>

@@ -3,13 +3,14 @@ import dataSets from '../lib/carousel-data';
 
 const styles = {
   carouselBox: {
+    maxWidth: '40rem',
     border: '2px solid darkgray',
-    borderRadius: '10px',
-    width: '40rem'
+    borderRadius: '10px'
   },
   carouselImage: {
-    width: '20rem',
-    height: '12rem',
+    width: '100%',
+    height: '15rem',
+    objectFit: 'cover',
     border: '1px solid darkgray',
     borderRadius: '10px'
   },
@@ -85,8 +86,8 @@ export default class Carousel extends React.Component {
             <i className="fa-solid fa-chevron-left fs-1" onClick={this.handleLeft} style={styles.clicker} />
           </div>
           <div>
-            <div className='container d-flex justify-content-center'>
-              <img className='m-3' style={styles.carouselImage} src={dataSets[this.state.viewIndex].imageUrl} alt="Carousel Image" />
+            <div className='p-3 d-flex justify-content-center'>
+              <img style={styles.carouselImage} src={dataSets[this.state.viewIndex].imageUrl} alt="Carousel Image" />
             </div>
             <div className='container d-flex justify-content-center'>
               <h6 className=' text-center py-3'>{dataSets[this.state.viewIndex].text}</h6>
