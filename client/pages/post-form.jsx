@@ -8,6 +8,13 @@ const styles = {
     width: '20rem',
     height: '20rem',
     objectFit: 'cover'
+  },
+  postBox: {
+    borderRadius: '0.75rem'
+  },
+  header: {
+    fontFamily: 'Roboto, sans-serif',
+    fontWeight: 'bold'
   }
 };
 
@@ -106,13 +113,13 @@ export default class PostForm extends React.Component {
       );
     }
     return (
-      <div className='d-flex flex-column justify-content-center align-items-center'>
-        <h1 className='text-center my-5'>Create your Post!</h1>
-        <div className='d-flex justify-content-around align-items-center bg-light border rounded-3 w-50 shadow-sm'>
-          <div className='col-3 mx-4'>
+      <div className='d-flex justify-content-center flex-column align-items-center'>
+        <h1 className='text-center my-5' style={styles.header}>Create your Post!</h1>
+        <div className='d-flex flex-wrap justify-content-center align-items-center bg-secondary m-1 shadow-lg' style={styles.postBox}>
+          <div className='m-4'>
             <img className='border border-secondary rounded-3' src={this.state.image} alt="post-image" style={styles.postImage} />
           </div>
-          <div className='col-6 my-3'>
+          <div>
             <form className='post-form m-4' onSubmit={this.handleSubmit}>
               <div>
                 <div>
@@ -124,7 +131,7 @@ export default class PostForm extends React.Component {
                 name='title'
                 type="text"
                 onChange={this.handleChange}
-                className="form-control w-75" />
+                className="form-control" />
                 </div>
                 <div>
                   <label htmlFor="isbn" className='form-label mt-2'>ISBN (i.e.: xxx-x-xx-xxxxxx-x)</label>
@@ -134,7 +141,7 @@ export default class PostForm extends React.Component {
                   name="isbn"
                   id="isbn"
                   onChange={this.handleChange}
-                  className="form-control w-75" />
+                  className="form-control" />
                 </div>
                 <div>
                   <label htmlFor="comments" className='form-label mt-2'>Comments</label>
@@ -144,9 +151,9 @@ export default class PostForm extends React.Component {
                   id="comments"
                   maxLength="225"
                   onChange={this.handleChange}
-                  className="form-control w-100" />
+                  className="form-control" />
                 </div>
-                <div className='input-group d-flex justify-content-around w-50 my-4'>
+                <div className='input-group d-flex justify-content-around my-4'>
                   <div>
                     <label htmlFor="sale" className='form-label me-2'>For Sale</label>
                     <input
@@ -180,14 +187,14 @@ export default class PostForm extends React.Component {
                   onChange={this.fileInputChange}
                   accept=".png, .jpg, .jpeg" />
                 </div>
-                <div className='d-flex justify-content-end w-100'>
+                <div className='d-flex justify-content-end mt-3'>
                   <button type='submit' className='btn btn-outline-info'>Submit Post</button>
                 </div>
               </div>
             </form>
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }
