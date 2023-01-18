@@ -3,9 +3,12 @@
   height: 100%;
 }
 
-.bookworm,
+.bookworm {
+  text-shadow: 2px 0 0 #0096c7, 0 -1.5px 0 #0096c7, 0 1.5px 0 #0096c7, -1.5px 0 0 #0096c7;
+}
+
 .welcome {
-  text-shadow: 1.5px 0 0 black, 0 -1px 0 black, 0 1px 0 black, -1px 0 0 black;
+  text-shadow: 2px 0 0 black, 0 -1.5px 0 black, 0 1.5px 0 black, -1.5px 0 0 black;
 }
 
 .fa-user,

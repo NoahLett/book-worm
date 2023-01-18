@@ -95,7 +95,7 @@ export default class App extends React.Component {
     const contextValue = { user, route, handleSignIn, handleSignOut, transferSaleId, transferWantId };
     return (
       <AppContext.Provider value={contextValue}>
-        <div className='w-100'>
+        <div>
           <Header/>
           { this.renderPage() }
         </div>

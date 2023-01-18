@@ -7,7 +7,7 @@ const styles = {
     fontSize: '3.25rem',
     textDecoration: 'none',
     fontFamily: '"Exo 2", sans-serif',
-    color: '#0096c7'
+    color: 'white'
   }
 };
 
