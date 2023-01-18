@@ -47,8 +47,9 @@ export default class FAQ extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='container'>
         <h1 className='text-center' style={styles.faqHeader}>Frequently Asked Questions</h1>
+        <hr />
         <div className='d-flex justify-content-center'>
           <div className='mx-1' style={styles.accordion}>
             {topics.map((topic, index) => {
@@ -59,7 +60,7 @@ export default class FAQ extends React.Component {
                 return (
                   <div className='acc-container p-0' style={styles.accContainer} key={index}>
                     <div className='acc-item'>
-                      <div className='acc-header-box d-flex align-items-center justify-content-between my-2 mx-0' style={styles.accHeaderBox} onClick={handleClick}>
+                      <div className='acc-header-box d-flex align-items-center justify-content-between my-2 mx-0 shadow-lg' style={styles.accHeaderBox} onClick={handleClick}>
                         <h2 className='acc-header fs-4 my-3 mx-4'>{topic.title}</h2>
                         <i className="fa-solid fa-chevron-down pe-4" />
                       </div>
@@ -73,7 +74,7 @@ export default class FAQ extends React.Component {
                 return (
                   <div className='acc-container p-0' style={styles.accContainer} key={index}>
                     <div className='acc-item'>
-                      <div className='acc-header-box d-flex align-items-center justify-content-between my-2 mx-0' style={styles.accHeaderBox} onClick={handleClick}>
+                      <div className='acc-header-box d-flex align-items-center justify-content-between my-2 mx-0 shadow-lg' style={styles.accHeaderBox} onClick={handleClick}>
                         <h2 className='acc-header fs-4 my-3 mx-4'>{topic.title}</h2>
                         <i className="fa-solid fa-chevron-up pe-4" />
                       </div>

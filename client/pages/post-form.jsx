@@ -113,10 +113,13 @@ export default class PostForm extends React.Component {
       );
     }
     return (
-      <div className='container d-flex justify-content-center flex-column align-items-center'>
-        <h1 className='text-center my-5' style={styles.header}>Create your Post!</h1>
+      <div className='container d-flex flex-column justify-content-center align-items-center'>
+        <div className='w-100'>
+          <h1 className='text-center mt-5' style={styles.header}>Create your Post!</h1>
+          <hr />
+        </div>
         <div className='d-flex flex-wrap justify-content-center align-items-center bg-secondary m-1 shadow-lg' style={styles.postBox}>
-          <div className='m-5'>
+          <div className='m-4'>
             <img className='border border-secondary rounded-3' src={this.state.image} alt="post-image" style={styles.postImage} />
           </div>
           <div>
@@ -194,7 +197,7 @@ export default class PostForm extends React.Component {
             </form>
           </div>
         </div>
-      </div >
+      </div>
     );
   }
 }
