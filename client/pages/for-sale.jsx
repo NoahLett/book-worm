@@ -1,5 +1,6 @@
 import React from 'react';
 import AppContext from '../lib/app-context';
+import { Audio } from 'react-loader-spinner';
 
 const styles = {
   image: {
@@ -20,7 +21,8 @@ export default class ForSale extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sales: []
+      sales: [],
+      loading: true
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -28,7 +30,10 @@ export default class ForSale extends React.Component {
   componentDidMount() {
     fetch('/api/auth/sales')
       .then(res => res.json())
-      .then(sales => this.setState({ sales }));
+      .then(sales => {
+        this.setState({ sales });
+        this.setState({ loading: false });
+      });
   }
 
   handleClick(event) {
@@ -45,23 +50,31 @@ export default class ForSale extends React.Component {
   }
 
   render() {
-    return (
-      <div className='container py-4'>
-        <h1>Books for Sale and Trade</h1>
-        <hr/>
-        <div className='container bg-light p-4 rounded-3 shadow-lg'>
-          <div className='row'>
-            {
+    if (this.state.loading === true) {
+      return (
+        <div className='container d-flex justify-content-center align-items-center vh-100'>
+          <Audio height="100" width="100" color='#0096C7' ariaLabel='audio-loading' wrapperStyle={{}} wrapperClass="wrapper-class" visible={true} />
+        </div>
+      );
+    } else {
+      return (
+        <div className='container py-4'>
+          <h1>Books for Sale and Trade</h1>
+          <hr/>
+          <div className='container bg-light p-4 rounded-3 shadow-lg'>
+            <div className='row'>
+              {
             this.state.sales.map(sale => (
               <div key={sale.saleId} className="col-12 col-md-6 col-lg-4">
                 <Sale id={this.id} onClick={this.handleClick} sale={sale}/>
               </div>
             ))
           }
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 ForSale.contextType = AppContext;

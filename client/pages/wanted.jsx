@@ -1,5 +1,6 @@
 import React from 'react';
 import AppContext from '../lib/app-context';
+import { Audio } from 'react-loader-spinner';
 
 const styles = {
   image: {
@@ -19,7 +20,8 @@ export default class Wanted extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      wants: []
+      wants: [],
+      loading: true
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -27,7 +29,10 @@ export default class Wanted extends React.Component {
   componentDidMount() {
     fetch('/api/auth/wants')
       .then(res => res.json())
-      .then(wants => this.setState({ wants }));
+      .then(wants => {
+        this.setState({ wants });
+        this.setState({ loading: false });
+      });
   }
 
   handleClick(event) {
@@ -44,23 +49,31 @@ export default class Wanted extends React.Component {
   }
 
   render() {
-    return (
-      <div className='container py-4'>
-        <h1>Wanted Books</h1>
-        <hr />
-        <div className='container bg-light p-4 rounded-3 shadow-lg'>
-          <div className='row'>
-            {
+    if (this.state.loading === true) {
+      return (
+        <div className='container d-flex justify-content-center align-items-center vh-100'>
+          <Audio height="100" width="100" color='#0096C7' ariaLabel='audio-loading' wrapperStyle={{}} wrapperClass="wrapper-class" visible={true} />
+        </div>
+      );
+    } else {
+      return (
+        <div className='container py-4'>
+          <h1>Wanted Books</h1>
+          <hr />
+          <div className='container bg-light p-4 rounded-3 shadow-lg'>
+            <div className='row'>
+              {
             this.state.wants.map(want => (
               <div key={want.wantId} className="col-12 col-md-6 col-lg-4">
                 <Want id={this.id} onClick={this.handleClick} want={want}/>
               </div>
             ))
           }
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 Wanted.contextType = AppContext;
