@@ -3,14 +3,26 @@ import AppContext from '../lib/app-context';
 
 const styles = {
   modalOverlay: {
-    position: 'absolute',
+    position: 'fixed',
     top: '0',
     right: '0',
     bottom: '0',
     left: '0',
-    width: '100 %',
-    height: '100 %',
     backgroundColor: 'rgb(0 0 0 / 50 %)'
+  },
+  modalBox: {
+    zIndex: '1',
+    position: 'absolute',
+    left: '0',
+    right: '0',
+    top: '0',
+    bottom: '0',
+    margin: 'auto',
+    maxWidth: '30rem',
+    maxHeight: '15rem',
+    backgroundColor: '#f1f3f5',
+    border: '2px solid darkslategray',
+    borderRadius: '10px'
   }
 };
 
@@ -20,7 +32,7 @@ export default class UserModal extends React.Component {
     if (user === null) {
       return (
         <div className='modal-overlay' style={styles.modalOverlay} onClick={this.props.onClick} >
-          <div className='modal-box'>
+          <div className='modal-box' style={styles.modalBox}>
             <h4 className='text-center my-5'>{'Looks like you aren\'t logged in.'}</h4>
             <div className='d-flex justify-content-center'>
               <a className='my-4 mx-5 text-decoration-none btn btn-outline-info' onClick={this.props.onClick} href="#sign-in">Sign In</a>
