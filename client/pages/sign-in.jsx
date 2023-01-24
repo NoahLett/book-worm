@@ -14,8 +14,8 @@ export default class Authentication extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: ''
+      username: 'DemoUser',
+      password: 'password1'
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,6 +41,8 @@ export default class Authentication extends React.Component {
         if (result.user && result.token) {
           this.context.handleSignIn(result);
           window.location.hash = '#';
+        } else {
+          return 'Incorrect username or password';
         }
       });
   }
@@ -59,8 +61,8 @@ export default class Authentication extends React.Component {
                 <label htmlFor="username" className='form-label mt-2'>Username</label>
                 <input
                 required
-                autoFocus
                 id='username'
+                value={this.state.username}
                 name='username'
                 type="text"
                 onChange={this.handleChange}
@@ -71,6 +73,7 @@ export default class Authentication extends React.Component {
                 <input
               required
               id="password"
+              value={this.state.password}
               name='password'
               type="password"
               onChange={this.handleChange}
