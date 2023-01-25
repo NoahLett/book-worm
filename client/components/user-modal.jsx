@@ -44,7 +44,7 @@ export default class UserModal extends React.Component {
     } else if (user !== null) {
       return (
         <div className='modal-overlay' style={styles.modalOverlay} onClick={this.props.onClick}>
-          <div className='modal-box'>
+          <div className='modal-box' style={styles.modalBox}>
             <h4 className='text-center my-5'>Are you sure you want to sign out?</h4>
             <div className='d-flex justify-content-center'>
               <button className='mx-5 my-4 btn btn-outline-info' onClick={handleSignOut}>Sign Out</button>

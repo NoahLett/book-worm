@@ -93,7 +93,6 @@ export default class EditForm extends React.Component {
         })
         .catch(err => console.error(err));
       window.location.hash = '#for-sale';
-      window.location.reload(false);
     } else if (type === 'want') {
       event.preventDefault();
       const formData = new FormData();
@@ -113,8 +112,8 @@ export default class EditForm extends React.Component {
         })
         .catch(err => console.error(err));
       window.location.hash = '#wanted';
-      window.location.reload(false);
     }
+    window.location.reload();
   }
 
   render() {

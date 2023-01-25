@@ -73,7 +73,6 @@ export default class PostForm extends React.Component {
         })
         .catch(err => console.error(err));
       window.location.hash = '#wanted';
-      window.location.reload(false);
     } else if (this.state.postType === 'sale') {
       event.preventDefault();
       const { user } = this.context;
@@ -98,8 +97,8 @@ export default class PostForm extends React.Component {
         })
         .catch(err => console.error(err));
       window.location.hash = '#for-sale';
-      window.location.reload(false);
     }
+    window.location.reload();
   }
 
   render() {

@@ -15,7 +15,8 @@ export default class Authentication extends React.Component {
     super(props);
     this.state = {
       username: 'DemoUser',
-      password: 'password1'
+      password: 'password1',
+      isCorrect: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -42,24 +43,25 @@ export default class Authentication extends React.Component {
           this.context.handleSignIn(result);
           window.location.hash = '#';
         } else {
-          return 'Incorrect username or password';
+          this.setState({ isCorrect: false });
         }
       });
   }
 
   render() {
-    return (
-      <div>
-        <div className='d-flex justify-content-center'>
-          <h1 className='text-center my-5'><strong>Welcome Back!</strong></h1>
-        </div>
-        <h3 className='text-center'><strong>Please sign in to gain access to user features.</strong></h3>
-        <div className='d-flex justify-content-center'>
-          <div className='d-flex justify-content-center mx-1 mt-4 py-3' style={styles.formContainer}>
-            <form className='w-75' onSubmit={this.handleSubmit}>
-              <div>
-                <label htmlFor="username" className='form-label mt-2'>Username</label>
-                <input
+    if (this.state.isCorrect !== false) {
+      return (
+        <div>
+          <div className='d-flex justify-content-center'>
+            <h1 className='text-center my-5'><strong>Welcome Back!</strong></h1>
+          </div>
+          <h3 className='text-center'><strong>Please sign in to gain access to user features.</strong></h3>
+          <div className='d-flex justify-content-center'>
+            <div className='d-flex justify-content-center mx-1 mt-4 py-3' style={styles.formContainer}>
+              <form className='w-75' onSubmit={this.handleSubmit}>
+                <div>
+                  <label htmlFor="username" className='form-label mt-2'>Username</label>
+                  <input
                 required
                 id='username'
                 value={this.state.username}
@@ -67,10 +69,10 @@ export default class Authentication extends React.Component {
                 type="text"
                 onChange={this.handleChange}
                 className="form-control" />
-              </div>
-              <div>
-                <label htmlFor="password" className='form-label mt-2'>Password</label>
-                <input
+                </div>
+                <div>
+                  <label htmlFor="password" className='form-label mt-2'>Password</label>
+                  <input
               required
               id="password"
               value={this.state.password}
@@ -78,18 +80,65 @@ export default class Authentication extends React.Component {
               type="password"
               onChange={this.handleChange}
               className="form-control" />
-              </div>
-              <div className='d-flex justify-content-end'>
-                <button type='submit' className='btn btn-outline-info mt-3'>Sign In</button>
-              </div>
-              <div>
-                <p className='text-center pt-4'>Not a user? Click <a href='#sign-up' className='text-info text-decoration-none'>here</a> to sign up!</p>
-              </div>
-            </form>
+                </div>
+                <div className='d-flex justify-content-end'>
+                  <button type='submit' className='btn btn-outline-info mt-3'>Sign In</button>
+                </div>
+                <div>
+                  <p className='text-center pt-4'>Not a user? Click <a href='#sign-up' className='text-info text-decoration-none'>here</a> to sign up!</p>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else if (this.state.isCorrect === false) {
+      return (
+        <div>
+          <div className='d-flex justify-content-center'>
+            <h1 className='text-center my-5'><strong>Welcome Back!</strong></h1>
+          </div>
+          <h3 className='text-center'><strong>Please sign in to gain access to user features.</strong></h3>
+          <div className='d-flex justify-content-center'>
+            <div className='d-flex justify-content-center mx-1 mt-4 py-3' style={styles.formContainer}>
+              <form className='w-75' onSubmit={this.handleSubmit}>
+                <div>
+                  <label htmlFor="username" className='form-label mt-2'>Username</label>
+                  <input
+                    required
+                    id='username'
+                    value={this.state.username}
+                    name='username'
+                    type="text"
+                    onChange={this.handleChange}
+                    className="form-control" />
+                </div>
+                <div>
+                  <label htmlFor="password" className='form-label mt-2'>Password</label>
+                  <input
+                    required
+                    id="password"
+                    value={this.state.password}
+                    name='password'
+                    type="password"
+                    onChange={this.handleChange}
+                    className="form-control" />
+                </div>
+                <div>
+                  <p className='text-danger'>The username or password used is incorrect.</p>
+                </div>
+                <div className='d-flex justify-content-end'>
+                  <button type='submit' className='btn btn-outline-info mt-3'>Sign In</button>
+                </div>
+                <div>
+                  <p className='text-center pt-4'>Not a user? Click <a href='#sign-up' className='text-info text-decoration-none'>here</a> to sign up!</p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 }
 Authentication.contextType = AppContext;
