@@ -27,12 +27,14 @@ export default class Wanted extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/auth/wants')
-      .then(res => res.json())
-      .then(wants => {
-        this.setState({ wants });
-        this.setState({ loading: false });
-      });
+    setTimeout(() => {
+      fetch('/api/auth/wants')
+        .then(res => res.json())
+        .then(wants => {
+          this.setState({ wants });
+          this.setState({ loading: false });
+        });
+    }, 500);
   }
 
   handleClick(event) {

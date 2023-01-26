@@ -28,12 +28,14 @@ export default class ForSale extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/auth/sales')
-      .then(res => res.json())
-      .then(sales => {
-        this.setState({ sales });
-        this.setState({ loading: false });
-      });
+    setTimeout(() => {
+      fetch('/api/auth/sales')
+        .then(res => res.json())
+        .then(sales => {
+          this.setState({ sales });
+          this.setState({ loading: false });
+        });
+    }, 500);
   }
 
   handleClick(event) {

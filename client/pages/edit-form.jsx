@@ -1,9 +1,12 @@
 import React from 'react';
 import AppContext from '../lib/app-context';
+import { Audio } from 'react-loader-spinner';
 
 const styles = {
   editBox: {
-    borderRadius: '0.75rem'
+    borderRadius: '0.75rem',
+    backgroundColor: '#f1f3f5',
+    border: '1px solid lightgray'
   },
   postImage: {
     width: '20rem',
@@ -23,7 +26,8 @@ export default class EditForm extends React.Component {
       image: '',
       title: '',
       isbn: '',
-      comments: ''
+      comments: '',
+      loading: true
     };
     this.fileInputRef = React.createRef();
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -43,6 +47,7 @@ export default class EditForm extends React.Component {
           this.setState({ title: post.saleTitle });
           this.setState({ isbn: post.isbn });
           this.setState({ comments: post.saleContent });
+          this.setState({ loading: false });
         });
     } else if (type === 'want') {
       fetch(`/api/auth/edit/want/${postId}`)
@@ -52,6 +57,7 @@ export default class EditForm extends React.Component {
           this.setState({ title: post.wantTitle });
           this.setState({ isbn: post.isbn });
           this.setState({ comments: post.wantContent });
+          this.setState({ loading: false });
         });
     }
   }
@@ -91,8 +97,8 @@ export default class EditForm extends React.Component {
           this.setState({ isbn: '' });
           this.setState({ comments: '' });
         })
-        .catch(err => console.error(err));
-      window.location.hash = '#for-sale';
+        .catch(err => console.error(err))
+        .then(window.location.hash = '#for-sale');
     } else if (type === 'want') {
       event.preventDefault();
       const formData = new FormData();
@@ -110,29 +116,36 @@ export default class EditForm extends React.Component {
           this.setState({ isbn: '' });
           this.setState({ comments: '' });
         })
-        .catch(err => console.error(err));
-      window.location.hash = '#wanted';
+        .catch(err => console.error(err))
+        .then(window.location.hash = '#wanted');
     }
     window.location.reload();
   }
 
   render() {
-    return (
-      <div className='container d-flex flex-column justify-content-center align-items-center'>
-        <div className='w-100'>
-          <h1 className='text-center mt-5' style={styles.header}>Edit your Post!</h1>
-          <hr />
+    if (this.state.loading === true) {
+      return (
+        <div className='container d-flex justify-content-center align-items-center vh-100'>
+          <Audio height="100" width="100" color='#0096C7' ariaLabel='audio-loading' wrapperStyle={{}} wrapperClass="wrapper-class" visible={true} />
         </div>
-        <div className='d-flex flex-wrap justify-content-center align-items-center bg-secondary m-1 shadow-lg' style={styles.editBox}>
-          <div className='m-4'>
-            <img className='post-image border border-secondary rounded-3' src={this.state.image} alt="post-image" style={styles.postImage} />
+      );
+    } else {
+      return (
+        <div className='container d-flex flex-column justify-content-center align-items-center'>
+          <div className='w-100'>
+            <h1 className='text-center mt-5' style={styles.header}>Edit your Post!</h1>
+            <hr />
           </div>
-          <div>
-            <form className='post-form m-4' onSubmit={this.handleSubmit}>
-              <div>
+          <div className='d-flex flex-wrap justify-content-center align-items-center m-1 shadow-lg' style={styles.editBox}>
+            <div className='m-4'>
+              <img className='post-image border border-secondary rounded-3' src={this.state.image} alt="post-image" style={styles.postImage} />
+            </div>
+            <div>
+              <form className='post-form m-4' onSubmit={this.handleSubmit}>
                 <div>
-                  <label htmlFor="title" className='form-label mt-2'>Title</label>
-                  <input
+                  <div>
+                    <label htmlFor="title" className='form-label mt-2'>Title</label>
+                    <input
                     required
                     value={this.state.title}
                     autoFocus
@@ -141,10 +154,10 @@ export default class EditForm extends React.Component {
                     type="text"
                     onChange={this.handleChange}
                     className="form-control" />
-                </div>
-                <div>
-                  <label htmlFor="isbn" className='form-label mt-2'>ISBN (i.e.: xxx-x-xx-xxxxxx-x)</label>
-                  <input
+                  </div>
+                  <div>
+                    <label htmlFor="isbn" className='form-label mt-2'>ISBN (i.e.: xxx-x-xx-xxxxxx-x)</label>
+                    <input
                     required
                     value={this.state.isbn}
                     type="text"
@@ -152,10 +165,10 @@ export default class EditForm extends React.Component {
                     id="isbn"
                     onChange={this.handleChange}
                     className="form-control" />
-                </div>
-                <div>
-                  <label htmlFor="comments" className='form-label mt-2'>Comments</label>
-                  <textarea
+                  </div>
+                  <div>
+                    <label htmlFor="comments" className='form-label mt-2'>Comments</label>
+                    <textarea
                     required
                     value={this.state.comments}
                     name="comments"
@@ -163,28 +176,29 @@ export default class EditForm extends React.Component {
                     maxLength="225"
                     onChange={this.handleChange}
                     className="form-control" />
-                </div>
-                <div>
-                  <div className='mt-3'>
-                    <label htmlFor="image-upload" className='form-label'>Image Upload</label>
                   </div>
-                  <input
+                  <div>
+                    <div className='mt-3'>
+                      <label htmlFor="image-upload" className='form-label'>Image Upload</label>
+                    </div>
+                    <input
                     required
                     type="file"
                     name='image'
                     ref={this.fileInputRef}
                     onChange={this.fileInputChange}
                     accept=".png, .jpg, .jpeg" />
+                  </div>
+                  <div className='d-flex justify-content-end mt-3'>
+                    <button type='submit' className='btn btn-outline-info'>Update Post</button>
+                  </div>
                 </div>
-                <div className='d-flex justify-content-end mt-3'>
-                  <button type='submit' className='btn btn-outline-info'>Update Post</button>
-                </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 EditForm.contextType = AppContext;
