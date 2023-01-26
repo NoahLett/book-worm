@@ -15,7 +15,8 @@ const styles = {
     borderRadius: '10px'
   },
   clicker: {
-    cursor: 'pointer'
+    cursor: 'pointer',
+    color: 'darkslategray'
   }
 };
 
