@@ -125,7 +125,7 @@ export default class Authentication extends React.Component {
                     className="form-control" />
                 </div>
                 <div>
-                  <p className='text-danger'>The username or password used is incorrect.</p>
+                  <p className='text-danger'>The username or password is incorrect.</p>
                 </div>
                 <div className='d-flex justify-content-end'>
                   <button type='submit' className='btn btn-outline-info mt-3'>Sign In</button>

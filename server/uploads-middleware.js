@@ -26,23 +26,4 @@ const uploadsMiddleware = multer({
   storage
 }).single('image');
 
-// the string argument to .single() is the file's field name
-// it matches the <input name="file-to-upload" type="file"/>
-// or the key of the FormData field you appended
-
-// const imagesDirectory = path.join(__dirname, 'public/images');
-
-// const storage = multer.diskStorage({
-//   destination: (req, file, callback) => {
-//     callback(null, imagesDirectory);
-//   },
-//   filename: (req, file, callback) => {
-//     const fileExtension = path.extname(file.originalname);
-//     const name = `${file.fieldname}-${Date.now()}${fileExtension}`;
-//     callback(null, name);
-//   }
-// });
-
-// const uploadsMiddleware = multer({ storage }).single('image');
-
 module.exports = uploadsMiddleware;

@@ -10,7 +10,9 @@ const styles = {
     objectFit: 'cover'
   },
   postBox: {
-    borderRadius: '0.75rem'
+    borderRadius: '0.75rem',
+    border: '1px solid lightgray',
+    backgroundColor: '#f1f3f5'
   },
   header: {
     fontFamily: 'Roboto, sans-serif',
@@ -22,7 +24,7 @@ export default class PostForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      image: 'https://www.kurin.com/wp-content/uploads/placeholder-square.jpg',
+      image: 'https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg',
       title: '',
       isbn: '',
       comments: '',
@@ -71,8 +73,8 @@ export default class PostForm extends React.Component {
           this.setState({ comments: '' });
           this.setState({ postType: 'sale' });
         })
-        .catch(err => console.error(err));
-      window.location.hash = '#wanted';
+        .catch(err => console.error(err))
+        .then(window.location.hash = '#wanted');
     } else if (this.state.postType === 'sale') {
       event.preventDefault();
       const { user } = this.context;
@@ -95,10 +97,9 @@ export default class PostForm extends React.Component {
           this.setState({ comments: '' });
           this.setState({ postType: 'sale' });
         })
-        .catch(err => console.error(err));
-      window.location.hash = '#for-sale';
+        .catch(err => console.error(err))
+        .then(window.location.hash = '#for-sale');
     }
-    window.location.reload();
   }
 
   render() {
@@ -117,7 +118,7 @@ export default class PostForm extends React.Component {
           <h1 className='text-center mt-5' style={styles.header}>Create your Post!</h1>
           <hr />
         </div>
-        <div className='d-flex flex-wrap justify-content-center align-items-center bg-secondary m-1 shadow-lg' style={styles.postBox}>
+        <div className='d-flex flex-wrap justify-content-center align-items-center m-1 shadow-lg' style={styles.postBox}>
           <div className='m-4'>
             <img className='border border-secondary rounded-3' src={this.state.image} alt="post-image" style={styles.postImage} />
           </div>
