@@ -27,7 +27,7 @@ Try the application at [https://book-worm.noahlett.com](https://book-worm.noahle
 ## Features
 
 - Users can view a "wanted" list of books that are currently in demand
-- Users can view a "for sale" list of books that currently being offered for sale or trade
+- Users can view a "for sale" list of books that are currently being offered for sale or trade
 - Users who have accounts and are signed in may create a "wanted" post which will appear in the "wanted" list
 - Users who have accounts and are signed in may create a "for sale" post which will appear in the "for sale" list
 - Users who have accounts and are signed in may edit their own "wanted" posts
@@ -40,13 +40,13 @@ Try the application at [https://book-worm.noahlett.com](https://book-worm.noahle
 
 ## Preview
 
-![SGT React](assets/sign-in.gif)
-![SGT React](assets/create-sale-post.gif)
+![SGT React](assets/sign-in-feature.gif)
+![SGT React](assets/create-and-delete-post.gif)
 
 ## Features to be Added
 
 - Users can search for a book on the "for sale" page by either ISBN or title
-- A loading spinner to be displayed while data is being relayed
+- A loading spinner to be displayed while data is being relayed (implemented)
 
 ## Development
 
