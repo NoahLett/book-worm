@@ -21,7 +21,7 @@ export default class UserIcon extends React.Component {
     if (this.state.show === true) {
       return (
         <div>
-          <a className='user mx-4'><i className='fa-solid fa-user' /></a>
+          <a className='user'><i className='fa-solid fa-user' /></a>
           <div>
             <UserModal onClick={this.closeModal}/>
           </div>
@@ -30,7 +30,7 @@ export default class UserIcon extends React.Component {
     } else if (this.state.show === false) {
       return (
         <div>
-          <a className='user mx-4' onClick={this.openModal}><i className='fa-solid fa-user' /></a>
+          <a className='user mx-3' onClick={this.openModal}><i className='fa-solid fa-user' /></a>
         </div>
       );
     }
