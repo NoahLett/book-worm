@@ -1,7 +1,7 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
 import AppContext from './lib/app-context';
-import Header from './components/header';
+import Navbar from './components/Navbar';
 import Home from './pages/home';
 import FAQ from './pages/faq';
 import Registration from './pages/sign-up';
@@ -96,7 +96,7 @@ export default class App extends React.Component {
     return (
       <AppContext.Provider value={contextValue}>
         <div>
-          <Header/>
+          <Navbar/>
           { this.renderPage() }
         </div>
       </AppContext.Provider>

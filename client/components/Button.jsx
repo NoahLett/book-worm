@@ -1,10 +1,10 @@
 import React from 'react';
 import './Button.css';
 
-const styles = ['btn-primary', 'btn-outline'];
-const sizes = ['btn-medium', 'btn-large'];
+const styles = ['button-main', 'button-outline'];
+const sizes = ['button-medium', 'button-large'];
 
-export const Button = ({
+const Button = ({
   children,
   type,
   onClick,
@@ -15,8 +15,10 @@ export const Button = ({
   const checkButtonSize = sizes.includes(buttonSize) ? buttonSize : sizes[0];
 
   return (
-    <button className={`btn ${checkButtonStyle} ${checkButtonSize}`} onClick={type}>
+    <button className={`button ${checkButtonStyle} ${checkButtonSize}`} onClick={type}>
       {children}
     </button>
   );
 };
+
+export default Button;
