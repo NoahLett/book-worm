@@ -2,6 +2,9 @@ import React from 'react';
 import topics from '../lib/data';
 
 const styles = {
+  faq: {
+    marginTop: '6rem'
+  },
   faqHeader: {
     marginTop: '4rem',
     fontFamily: 'Roboto, sans-serif',
@@ -47,7 +50,7 @@ export default class FAQ extends React.Component {
 
   render() {
     return (
-      <div className='container'>
+      <div className='container' style={styles.faq}>
         <h1 className='text-center' style={styles.faqHeader}>Frequently Asked Questions</h1>
         <hr />
         <div className='d-flex justify-content-center'>

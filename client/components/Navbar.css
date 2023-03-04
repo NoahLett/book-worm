@@ -18,18 +18,27 @@
   top: 0;
   justify-content: center;
   align-items: center;
-  height: 80px;
+  height: 5rem;
 }
 
 .navbar-logo {
-  color: #fff;
   justify-self: start;
   cursor: pointer;
   text-decoration: none;
   font-size: 3rem;
   display: flex;
   align-self: center;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+}
+
+.bookworm {
+  font-family: "Exo 2", sans-serif;
+  color: white;
+  text-shadow: 2px 2px #0096c7;
+}
+
+.bookworm:hover {
+  text-decoration: none;
+  color: white;
 }
 
 .nav-menu {
@@ -59,8 +68,7 @@
 }
 
 .nav-links:hover {
-  color: orangered;
-  border-bottom: 2.5px solid orangered;
+  color: #0096c7;
   transition: all 0.2s ease-out;
 }
 
@@ -70,7 +78,7 @@
 
 .fa-xmark:hover,
 .fa-bars:hover {
-  color: orangered;
+  color: #0096c7;
   transition: all 0.2s ease;
 }
 
@@ -94,10 +102,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
+    width: 90%;
     height: 100vh;
     position: absolute;
-    top: 80px;
+    top: 5rem;
     left: -100%;
     opacity: 1;
     transition: all 0.5s ease;
@@ -143,7 +151,7 @@
 
   .fa-xmark {
     color: #fff;
-    font-size: 2rem;
+    font-size: 2.25rem;
   }
 
   .nav-links-mobile {

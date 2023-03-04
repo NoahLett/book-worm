@@ -3,6 +3,9 @@ import AppContext from '../lib/app-context';
 import { Audio } from 'react-loader-spinner';
 
 const styles = {
+  sales: {
+    marginTop: '5rem'
+  },
   image: {
     height: '280px',
     objectFit: 'contain'
@@ -60,7 +63,7 @@ export default class ForSale extends React.Component {
       );
     } else {
       return (
-        <div className='container py-4'>
+        <div className='container py-4' style={styles.sales}>
           <h1>Books for Sale and Trade</h1>
           <hr/>
           <div className='container bg-light p-4 rounded-3 shadow-lg'>

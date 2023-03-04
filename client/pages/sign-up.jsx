@@ -1,6 +1,9 @@
 import React from 'react';
 
 const styles = {
+  signUp: {
+    marginTop: '4rem'
+  },
   formContainer: {
     backgroundColor: '#f1f3f5',
     width: '30rem',
@@ -79,7 +82,7 @@ export default class Registration extends React.Component {
     const check = this.validatePassword();
     const stop = this.stopper();
     return (
-      <div>
+      <div style={styles.signUp}>
         <div className='d-flex justify-content-center'>
           <h1 className='text-center mt-5 w-50'><strong>Welcome to BookWorm!</strong></h1>
         </div>

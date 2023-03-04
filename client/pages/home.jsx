@@ -2,6 +2,9 @@ import React from 'react';
 import Carousel from '../components/carousel';
 
 const styles = {
+  home: {
+    marginTop: '6rem'
+  },
   welcome: {
     fontFamily: 'Roboto, sans-serif',
     fontWeight: 'bold',
@@ -21,7 +24,7 @@ const styles = {
 
 export default function Home(props) {
   return (
-    <div className='container-fluid'>
+    <div className='container-fluid' style={styles.home}>
       <h1 className='welcome mt-5 mb-4 text-center' style={styles.welcome}>Welcome to BookWorm!</h1>
       <div className='container'>
         <h1 className='home-header text-center mb-4' style={styles.homeHeader}>Tired of burning your cash on overpriced textbooks?</h1>

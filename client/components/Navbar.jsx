@@ -27,7 +27,7 @@ export default function Navbar() {
     <div>
       <nav className="navbar">
         <div className="navbar-container">
-          <a href='#' className="navbar-logo mx-1" onClick={closeMobileMenu}>
+          <a href='#' className="navbar-logo bookworm mx-1" onClick={closeMobileMenu}>
             BookWorm
           </a>
           <div className="menu-icon">
@@ -51,7 +51,7 @@ export default function Navbar() {
             </li>
             <li className='nav-item'>
               <a href='#post-form' className='nav-links' onClick={closeMobileMenu}>
-                Create a Post
+                Post
               </a>
             </li>
             <li className='nav-item'>
