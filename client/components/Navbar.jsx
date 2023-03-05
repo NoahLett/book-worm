@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Button from './Button';
 import './Navbar.css';
+import './Button.css';
+import AppContext from '../lib/app-context';
 
 export default function Navbar() {
 
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
+
+  const { user, handleSignOut } = useContext(AppContext);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -59,8 +63,11 @@ export default function Navbar() {
                 FAQ
               </a>
             </li>
+            <li className='nav-item'>
+              {user ? <button onClick={handleSignOut} className='nav-links-mobile'>Sign Out</button> : <a className='nav-links-mobile' href='#sign-up'>Sign Up</a>}
+            </li>
           </ul>
-          {button && <a href='#sign-up'><Button buttonStyle='button-outline'>Sign Up</Button></a>}
+          {button && user ? <button onClick={handleSignOut} className='button-outline button-medium'>Sign Out</button> : button && <a href='#sign-up'><Button buttonStyle='button-outline'>Sign Up</Button></a>}
         </div>
       </nav>
     </div>

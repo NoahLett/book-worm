@@ -219,6 +219,7 @@ export default class Registration extends React.Component {
               </div>
               <div>
                 <p className='text-center pt-4'>Already a user? Click <a href='#sign-in' className='text-info text-decoration-none'>here</a> to sign in!</p>
+                <p className='text-center'>(Or use our <a href='#sign-in' className='text-info text-decoration-none'>Demo Account!</a>)</p>
               </div>
             </form>
           </div>
