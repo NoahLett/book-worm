@@ -2,6 +2,9 @@ import React from 'react';
 import AppContext from '../lib/app-context';
 
 const styles = {
+  signIn: {
+    marginTop: '5rem'
+  },
   formContainer: {
     backgroundColor: '#f1f3f5',
     width: '30rem',
@@ -51,7 +54,7 @@ export default class Authentication extends React.Component {
   render() {
     if (this.state.isCorrect !== false) {
       return (
-        <div>
+        <div style={styles.signIn}>
           <div className='d-flex justify-content-center'>
             <h1 className='text-center my-5'><strong>Welcome Back!</strong></h1>
           </div>

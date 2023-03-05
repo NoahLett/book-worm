@@ -3,10 +3,6 @@
   height: 100%;
 }
 
-.bookworm {
-  text-shadow: 2px 0 0 #0096c7, 0 -1.5px 0 #0096c7, 0 1.5px 0 #0096c7, -1.5px 0 0 #0096c7;
-}
-
 .welcome {
   text-shadow: 2px 0 0 black, 0 -1.5px 0 black, 0 1.5px 0 black, -1.5px 0 0 black;
 }
@@ -48,16 +44,6 @@
   background-color: white;
   width: 20rem;
   border-radius: 10px 0 0 10px;
-}
-
-.inactive {
-  visibility: hidden;
-  width: 0;
-  height: 0;
-}
-
-.active {
-  transform: translateX(55%);
 }
 
 .valid {

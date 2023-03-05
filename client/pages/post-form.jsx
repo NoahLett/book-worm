@@ -4,6 +4,9 @@ import UserModal from '../components/user-modal';
 import Home from './home';
 
 const styles = {
+  post: {
+    marginTop: '5rem'
+  },
   postImage: {
     width: '20rem',
     height: '20rem',
@@ -113,7 +116,7 @@ export default class PostForm extends React.Component {
       );
     }
     return (
-      <div className='container d-flex flex-column justify-content-center align-items-center'>
+      <div className='container d-flex flex-column justify-content-center align-items-center' style={styles.post}>
         <div className='w-100'>
           <h1 className='text-center mt-5' style={styles.header}>Create your Post!</h1>
           <hr />
@@ -182,13 +185,15 @@ export default class PostForm extends React.Component {
                   <div>
                     <label htmlFor="image-upload" className='form-label'>Image Upload</label>
                   </div>
-                  <input
+                  <div className="file-upload">
+                    <input
                   required
                   type="file"
                   name='image'
                   ref={this.fileInputRef}
                   onChange={this.fileInputChange}
                   accept=".png, .jpg, .jpeg" />
+                  </div>
                 </div>
                 <div className='d-flex justify-content-end mt-3'>
                   <button type='submit' className='btn btn-outline-info'>Submit Post</button>
