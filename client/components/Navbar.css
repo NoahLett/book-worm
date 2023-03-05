@@ -30,6 +30,14 @@
   align-self: center;
 }
 
+.book {
+  font-size: 2.25rem;
+  margin-left: 0.5rem;
+  align-self: center;
+  margin-top: 0.5rem;
+  color: white;
+}
+
 .bookworm {
   font-family: "Exo 2", sans-serif;
   color: white;
