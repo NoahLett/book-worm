@@ -1,0 +1,49 @@
+.header {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: 5rem;
+}
+
+.parallelogram-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+
+.parallelogram {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 20rem;
+  border: 1px solid white;
+  border-radius: 0.25rem;
+  height: 30rem;
+  background-color: rgba(206, 215, 221, 0.212);
+  transform: skew(-20deg);
+  margin: 0.75rem;
+  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out;
+}
+
+.parallelogram:hover {
+  transform: skew(-20deg) scale(1.02);
+  background-color: rgba(126, 127, 128, 0.212);
+  transition: all 0.7s ease;
+}
+
+.sub-header {
+  transform: skew(20deg);
+  text-align: center;
+  margin: 1rem;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-weight: bolder;
+}
+
+.money,
+.handshake {
+  font-size: 7rem;
+  transform: skew(20deg);
+  margin-bottom: 2rem;
+}

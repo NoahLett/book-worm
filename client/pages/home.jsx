@@ -1,43 +1,33 @@
 import React from 'react';
-import Carousel from '../components/carousel';
+// import Carousel from '../components/carousel';
+import './home.css';
+import '../components/Button.css';
+import { FaHandshake } from 'react-icons/fa';
+import { GiTakeMyMoney } from 'react-icons/gi';
 
 const styles = {
   home: {
     marginTop: '6rem'
   },
-  welcome: {
-    fontFamily: 'Roboto, sans-serif',
-    fontWeight: 'bold',
-    fontSize: '4rem',
-    color: '#0096c7'
-  },
-  homeHeader: {
-    color: 'darkslategray',
-    fontSize: '2rem',
-    fontFamily: 'Roboto, sans-serif'
-  },
-  quote: {
-    fontFamily: 'Roboto, sans-serif',
-    color: 'darkslategray'
+  button: {
+    marginTop: '1rem'
   }
 };
 
 export default function Home(props) {
   return (
-    <div className='container-fluid' style={styles.home}>
-      <h1 className='welcome mt-5 mb-4 text-center' style={styles.welcome}>Welcome to BookWorm!</h1>
-      <div className='container'>
-        <h1 className='home-header text-center mb-4' style={styles.homeHeader}>Tired of burning your cash on overpriced textbooks?</h1>
-        <div className='container mb-5'>
-          <Carousel/>
+    <div style={styles.home}>
+      <h1 className='header'>Welcome to BookWorm</h1>
+      <div className="parallelogram-container">
+        <div className="parallelogram">
+          <FaHandshake className='handshake'/>
+          <h4 className="sub-header">Have a textbook to sell?</h4>
+          <button className="button-dark" href='#sign-up' style={styles.button}>Get Started</button>
         </div>
-      </div>
-      <div style={styles.quote}>
-        <div className='container'>
-          <h3 className='text-center'><q>We need the best education system in the United States. The best system, not the most expensive.</q></h3>
-        </div>
-        <div className='container'>
-          <h4 className='text-end me-4'>-Bruce Brown</h4>
+        <div className="parallelogram">
+          <GiTakeMyMoney className='money'/>
+          <h4 className="sub-header">Trying to save this year?</h4>
+          <button className="button-dark" href='#for-sale' style={styles.button}>Search Deals</button>
         </div>
       </div>
     </div>

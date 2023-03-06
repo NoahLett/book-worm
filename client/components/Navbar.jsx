@@ -3,7 +3,7 @@ import Button from './Button';
 import './Navbar.css';
 import './Button.css';
 import AppContext from '../lib/app-context';
-import { FaBookOpen } from 'react-icons/fa';
+import { GiEarthWorm } from 'react-icons/gi';
 
 export default function Navbar() {
 
@@ -34,7 +34,7 @@ export default function Navbar() {
         <div className="navbar-container">
           <a href='#' className="navbar-logo bookworm mx-1" onClick={closeMobileMenu}>
             BookWorm
-            <FaBookOpen className='book' />
+            <GiEarthWorm className='worm' />
           </a>
           <div className="menu-icon">
             <i onClick={handleClick} className={click ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'} />
