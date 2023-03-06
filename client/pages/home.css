@@ -1,0 +1,155 @@
+.header {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: 5rem;
+}
+
+.parallelogram-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 4rem;
+}
+
+.parallelogram {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 20rem;
+  border: 1px solid white;
+  border-radius: 0.25rem;
+  height: 30rem;
+  background-color: rgba(206, 215, 221, 0.212);
+  transform: skew(-20deg);
+  margin: 0.75rem;
+  transition: transform 0.3s ease-in-out, width 0.3s ease-in-out, height 0.3s ease-in-out;
+}
+
+.parallelogram:hover {
+  transform: skew(-20deg) scale(1.02);
+  background-color: rgba(126, 127, 128, 0.212);
+  transition: all 0.7s ease;
+}
+
+.sub-header {
+  transform: skew(20deg);
+  text-align: center;
+  margin: 1rem;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-weight: bolder;
+}
+
+.money,
+.handshake {
+  font-size: 7rem;
+  transform: skew(20deg);
+  margin-bottom: 2rem;
+}
+
+/* For screens larger than 1024px */
+@media only screen and (min-width: 1024px) {
+  .parallelogram {
+    max-width: 25rem;
+    height: 35rem;
+  }
+}
+
+/* For screens between 768px and 1024px */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .parallelogram-container {
+    flex-wrap: wrap;
+  }
+
+  .parallelogram {
+    max-width: 35rem;
+    height: 30rem;
+  }
+}
+
+/* For screens between 480px and 767px */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .header {
+    font-size: 3rem;
+  }
+
+  .parallelogram-container {
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .parallelogram {
+    max-width: 90vw;
+    height: 20rem;
+    transform: skew(0);
+  }
+
+  .sub-header {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    transform: skew(0);
+  }
+
+  .button-dark {
+    font-size: 1.25rem;
+    max-width: 90vw;
+    padding: 0.75rem 1.5rem;
+    transform: skew(0);
+  }
+
+  .money,
+  .handshake {
+    transform: skew(0);
+  }
+
+  .parallelogram:hover {
+    transform: skew(0);
+    background-color: rgba(126, 127, 128, 0.212);
+    transition: all 0.7s ease;
+  }
+}
+
+/* For screens smaller than 480px */
+@media only screen and (max-width: 479px) {
+  .header {
+    font-size: 3rem;
+  }
+
+  .parallelogram-container {
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .parallelogram {
+    max-width: 90vw;
+    height: 15rem;
+    transform: skew(0);
+    padding: 0.25rem;
+  }
+
+  .sub-header {
+    font-size: 1.25rem;
+    margin-top: 0.5rem;
+    transform: skew(0);
+  }
+
+  .button-dark {
+    font-size: 1rem;
+    max-width: 90vw;
+    padding: 0.5rem 1rem;
+    transform: skew(0);
+  }
+
+  .money,
+  .handshake {
+    transform: skew(0);
+  }
+
+  .parallelogram:hover {
+    transform: skew(0);
+    background-color: rgba(126, 127, 128, 0.212);
+    transition: all 0.7s ease;
+  }
+}

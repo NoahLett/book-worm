@@ -20,6 +20,17 @@
   transition: all 0.3s ease-out;
 }
 
+.button-dark {
+  background-color: rgba(48, 49, 51, 0.808);
+  color: white;
+  padding: 8px 20px;
+  border: 1px solid white;
+  transition: all 0.3s ease-out;
+  transform: skew(20deg);
+  max-width: 10.5rem;
+  font-size: 1.25rem;
+}
+
 .button-medium {
   padding: 8px 20px;
   font-size: 20px;
@@ -30,6 +41,7 @@
   font-size: 20px;
 }
 
+.button-dark:hover,
 .button-medium:hover,
 .button-large:hover {
   background-color: white;
