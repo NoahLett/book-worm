@@ -27,7 +27,7 @@
   border: 1px solid white;
   transition: all 0.3s ease-out;
   transform: skew(20deg);
-  width: 10.5rem;
+  max-width: 10.5rem;
   font-size: 1.25rem;
 }
 
