@@ -3,18 +3,7 @@ html {
 }
 
 body {
-  background: linear-gradient(to top, #dfdbf1 0%, #607983 100%);
-}
-
-.welcome {
-  text-shadow: 2px 0 0 black, 0 -1.5px 0 black, 0 1.5px 0 black, -1.5px 0 0 black;
-}
-
-.fa-user,
-.user {
-  color: black;
-  font-size: 1.5rem;
-  cursor: pointer;
+  background: linear-gradient(to bottom, #dfdbf1 0%, #607983 100%);
 }
 
 .menu-item {
@@ -22,31 +11,6 @@ body {
   margin-left: 2rem;
   margin-right: 2rem;
   padding: 1rem;
-}
-
-.menu-item:first-child {
-  margin-top: 2rem;
-}
-
-.menu-item:hover:not(:first-child) {
-  background-color: #0096c7;
-  border-radius: 5px;
-  color: white;
-}
-
-.sidebar {
-  position: absolute;
-  right: 11rem;
-  top: 0;
-  bottom: 0;
-  border: 1px solid black;
-  box-shadow: -2px 0 5px darkslategray;
-  z-index: 1;
-  transform: translateX(100%);
-  transition: transform 0.4s;
-  background-color: white;
-  width: 20rem;
-  border-radius: 10px 0 0 10px;
 }
 
 .valid {
@@ -70,9 +34,5 @@ body {
   .main-container {
     padding-left: 1rem;
     padding-right: 1rem;
-  }
-
-  .sidebar {
-    right: 11rem;
   }
 }
