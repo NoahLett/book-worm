@@ -3,6 +3,25 @@
   font-weight: bold;
   text-align: center;
   font-size: 5rem;
+  padding-top: 7rem;
+  color: #212529;
+}
+
+.lower-header {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+  font-weight: bold;
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 1rem;
+  color: #212529;
+}
+
+.home-video {
+  position: absolute;
+  height: 100vh;
+  width: 100%;
+  z-index: -1;
+  object-fit: cover;
 }
 
 .parallelogram-container {
@@ -29,7 +48,7 @@
 
 .parallelogram:hover {
   transform: skew(-20deg) scale(1.02);
-  background-color: rgba(126, 127, 128, 0.212);
+  background-color: rgba(63, 64, 65, 0.5);
   transition: all 0.7s ease;
 }
 
@@ -71,7 +90,11 @@
 /* For screens between 480px and 767px */
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .header {
-    font-size: 3rem;
+    font-size: 2rem;
+  }
+
+  .lower-header {
+    font-size: 1.35rem;
   }
 
   .parallelogram-container {
@@ -115,7 +138,11 @@
 /* For screens smaller than 480px */
 @media only screen and (max-width: 479px) {
   .header {
-    font-size: 3rem;
+    font-size: 2rem;
+  }
+
+  .lower-header {
+    font-size: 1.35rem;
   }
 
   .parallelogram-container {

@@ -5,9 +5,6 @@ import { FaHandshake } from 'react-icons/fa';
 import { GiTakeMyMoney } from 'react-icons/gi';
 
 const styles = {
-  home: {
-    marginTop: '7rem'
-  },
   button: {
     marginTop: '1rem'
   }
@@ -15,8 +12,10 @@ const styles = {
 
 export default function Home(props) {
   return (
-    <div style={styles.home}>
-      <h1 className='header'>Welcome to BookWorm</h1>
+    <div>
+      <video className='home-video' src="/videos/grass-video.mp4" autoPlay loop muted playsInline type='video/mp4' />
+      <h1 className='header'>Welcome to BookWorm!</h1>
+      <h3 className='lower-header'>No More Over-Priced Textbooks</h3>
       <div className="parallelogram-container">
         <div className="parallelogram">
           <FaHandshake className='handshake'/>
