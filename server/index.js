@@ -20,11 +20,9 @@ app.use(staticMiddleware);
 app.use(express.json());
 
 app.post('/api/auth/sign-up', (req, res, next) => {
-  const { firstName, lastName, city, state, username, password, confirmPassword } = req.body;
-  if (!firstName || !lastName || !city || !state || !username || !password || !confirmPassword) {
+  const { firstName, lastName, city, state, username, password } = req.body;
+  if (!firstName || !lastName || !city || !state || !username || !password) {
     throw new ClientError(400, 'All fields are required.');
-  } else if (password !== confirmPassword) {
-    throw new ClientError(400, 'Please ensure your password matches with the confirmation field.');
   }
   argon2
     .hash(password)
