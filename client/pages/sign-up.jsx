@@ -2,20 +2,20 @@ import React, { useRef, useState, useEffect } from 'react';
 import { FaCheck, FaTimes, FaInfoCircle } from 'react-icons/fa';
 import axios from 'axios';
 
-const styles = {
-  signUp: {
-    marginTop: '4rem'
-  },
-  formContainer: {
-    backgroundColor: '#f1f3f5',
-    width: '30rem',
-    border: '1px solid lightgray',
-    borderRadius: '10px'
-  },
-  signupForm: {
-    width: '20rem'
-  }
-};
+// const styles = {
+//   signUp: {
+//     marginTop: '4rem'
+//   },
+//   formContainer: {
+//     backgroundColor: '#f1f3f5',
+//     width: '30rem',
+//     border: '1px solid lightgray',
+//     borderRadius: '10px'
+//   },
+//   signupForm: {
+//     width: '20rem'
+//   }
+// };
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -44,6 +44,44 @@ export default function Registration() {
 
   const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    userRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    setValidName(USER_REGEX.test(username));
+  }, [username]);
+
+  useEffect(() => {
+    setValidPwd(PWD_REGEX.test(password));
+    const match = password === matchPwd;
+    setValidMatch(match);
+  }, [password, matchPwd]);
+
+  useEffect(() => {
+    setErrMsg('');
+  }, [username, password, matchPwd]);
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('/api/auth/sign-up',
+        JSON.stringify({ firstName, lastName, city, state, username, password }),
+        {
+          headers: { 'Content-Type': 'application/json' }
+        }
+      );
+      setSuccess(true);
+      return response;
+    } catch (err) {
+      if (!err.response) {
+        setErrMsg('No server response');
+      } else {
+        setErrMsg('Username taken');
+      }
+    }
+  };
 
 }
 
