@@ -22,13 +22,20 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 export default function Registration() {
 
-  const userRef = useRef();
+  const firstNameRef = useRef();
   const errRef = useRef();
 
   const [firstName, setFirstName] = useState('');
+  const [firstNameFocus, setFirstNameFocus] = useState(false);
+
   const [lastName, setLastName] = useState('');
+  const [lastNameFocus, setLastNameFocus] = useState(false);
+
   const [city, setCity] = useState('');
+  const [cityFocus, setCityFocus] = useState(false);
+
   const [state, setState] = useState('');
+  const [stateFocus, setStateFocus] = useState(false);
 
   const [username, setUsername] = useState('');
   const [validName, setValidName] = useState(false);
@@ -46,7 +53,7 @@ export default function Registration() {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    userRef.current.focus();
+    firstNameRef.current.focus();
   }, []);
 
   useEffect(() => {
@@ -86,17 +93,38 @@ export default function Registration() {
   return (
     <div className="signup-container">
       {success
-      ? (
-        <div className="section">
-          <h1 className="success">Success!</h1>
-          <p>
-            <a href="#sign-in" className='sign-in-link'>Sign In</a>
-          </p>
-        </div>
-      )
+        ? (
+          <div className="section">
+            <h1 className="success">Success!</h1>
+            <p>
+              <a href="#sign-in" className='sign-in-link'>Sign In</a>
+            </p>
+          </div>
+          )
+        : (
+          <div className="section">
+            <p ref={errRef} className={errMsg ? 'errmsg' : 'offscreen'}>{errMsg}</p>
+            <h1 className="signup-header">Register</h1>
+            <form className="signup-form" onSubmit={handleSubmit}>
+              <label htmlFor="firstName" className="signup-label">
+                First Name:
+              </label>
+              <input
+                type="text"
+                id='firstName'
+                autoComplete='off'
+                onChange={e => setFirstName(e.target.value)}
+                required
+                className="input-field"
+                ref={firstNameRef}
+                onFocus={() => setFirstNameFocus(true)}
+                onBlur={setFirstNameFocus(false)}/>
+            </form>
+          </div>
+          )
       }
     </div>
-  )
+  );
 
 }
 
