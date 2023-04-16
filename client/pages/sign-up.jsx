@@ -83,6 +83,21 @@ export default function Registration() {
     }
   };
 
+  return (
+    <div className="signup-container">
+      {success
+      ? (
+        <div className="section">
+          <h1 className="success">Success!</h1>
+          <p>
+            <a href="#sign-in" className='sign-in-link'>Sign In</a>
+          </p>
+        </div>
+      )
+      }
+    </div>
+  )
+
 }
 
 // export default class Registration extends React.Component {
