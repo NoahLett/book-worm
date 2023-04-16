@@ -119,6 +119,19 @@ export default function Registration() {
                 ref={firstNameRef}
                 onFocus={() => setFirstNameFocus(true)}
                 onBlur={setFirstNameFocus(false)}/>
+
+              <label htmlFor="lastName" className="signup-label">
+                Last Name:
+              </label>
+              <input
+                type="text"
+                id='lastName'
+                autoComplete='off'
+                onChange={e => setLastName(e.target.value)}
+                required
+                className="input-field"
+                onFocus={() => setLastNameFocus(true)}
+                onBlur={setLastNameFocus(false)} />
             </form>
           </div>
           )
