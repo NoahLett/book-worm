@@ -26,16 +26,12 @@ export default function Registration() {
   const errRef = useRef();
 
   const [firstName, setFirstName] = useState('');
-  const [firstNameFocus, setFirstNameFocus] = useState(false);
 
   const [lastName, setLastName] = useState('');
-  const [lastNameFocus, setLastNameFocus] = useState(false);
 
   const [city, setCity] = useState('');
-  const [cityFocus, setCityFocus] = useState(false);
 
   const [state, setState] = useState('');
-  const [stateFocus, setStateFocus] = useState(false);
 
   const [username, setUsername] = useState('');
   const [validName, setValidName] = useState(false);
@@ -116,9 +112,7 @@ export default function Registration() {
                 onChange={e => setFirstName(e.target.value)}
                 required
                 className="input-field"
-                ref={firstNameRef}
-                onFocus={() => setFirstNameFocus(true)}
-                onBlur={setFirstNameFocus(false)}/>
+                ref={firstNameRef}/>
 
               <label htmlFor="lastName" className="signup-label">
                 Last Name:
@@ -129,9 +123,7 @@ export default function Registration() {
                 autoComplete='off'
                 onChange={e => setLastName(e.target.value)}
                 required
-                className="input-field"
-                onFocus={() => setLastNameFocus(true)}
-                onBlur={setLastNameFocus(false)} />
+                className="input-field"/>
 
               <label htmlFor="city" className="signup-label">
                 City:
@@ -142,9 +134,7 @@ export default function Registration() {
                 autoComplete='off'
                 onChange={e => setCity(e.target.value)}
                 required
-                className="input-field"
-                onFocus={() => setCityFocus(true)}
-                onBlur={setCityFocus(false)} />
+                className="input-field"/>
 
               <label htmlFor="state" className="signup-label">
                 State:
@@ -153,9 +143,7 @@ export default function Registration() {
                 required
                 id="state"
                 onChange={e => setState(e.target.value)}
-                className='input-field'
-                onFocus={() => setStateFocus(true)}
-                onBlur={setStateFocus(false)}>
+                className='input-field'>
                 <option value="" defaultValue="">Choose...</option>
                 <option value="AL">AL</option>
                 <option value="AK">AK</option>
