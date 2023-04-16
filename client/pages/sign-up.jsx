@@ -208,6 +208,32 @@ export default function Registration() {
                 <option value="WI">WI</option>
                 <option value="WY">WY</option>
               </select>
+
+              <label className='signup-label' htmlFor="username">
+                Username:
+                <span className={validName ? 'valid' : 'hide'}>
+                  <FaCheck />
+                </span>
+                <span className={validName || !username ? 'hide' : 'invalid'}>
+                  <FaTimes />
+                </span>
+              </label>
+              <input
+                className='input-field'
+                type="text"
+                id='username'
+                autoComplete='off'
+                onChange={e => setUsername(e.target.value)}
+                required
+                onFocus={() => setUserFocus(true)}
+                onBlur={() => setUserFocus(false)} />
+              <p className={userFocus && username && !validName ? 'instructions' : 'offscreen'}>
+                <FaInfoCircle />
+                4 to 24 characters.<br />
+                Must begin with a letter.<br />
+                Letters, numbers, underscores, hyphens allowed.
+              </p>
+
             </form>
           </div>
           )
