@@ -234,13 +234,69 @@ export default function Registration() {
                 Letters, numbers, underscores, hyphens allowed.
               </p>
 
+              <label className='signup-label' htmlFor="password">
+                Password:
+                <span className={validPwd ? 'valid' : 'hide'}>
+                  <FaCheck />
+                </span>
+                <span className={validPwd || !password ? 'hide' : 'invalid'}>
+                  <FaTimes />
+                </span>
+              </label>
+              <input
+                className='input-field'
+                type="password"
+                id='password'
+                onChange={e => setPassword(e.target.value)}
+                required
+                onFocus={() => setPwdFocus(true)}
+                onBlur={() => setPwdFocus(false)} />
+              <p className={pwdFocus && !validPwd ? 'instructions' : 'offscreen'}>
+                <FaInfoCircle />
+                8 to 24 characters.<br />
+                Must include uppercase and lowercase letters, a number and a special character.<br />
+                Allowed special characters:
+                <span>!</span>
+                <span>@</span>
+                <span>#</span>
+                <span>$</span>
+                <span>%</span>
+              </p>
+
+              <label className='signup-label' htmlFor="confirmpwd">
+                Confirm Password:
+                <span className={validMatch && matchPwd ? 'valid' : 'hide'}>
+                  <FaCheck />
+                </span>
+                <span className={validMatch || !matchPwd ? 'hide' : 'invalid'}>
+                  <FaTimes />
+                </span>
+              </label>
+              <input
+                className='input-field'
+                type="password"
+                id='confirmpwd'
+                onChange={e => setMatchPwd(e.target.value)}
+                required
+                onFocus={() => setMatchFocus(true)}
+                onBlur={() => setMatchFocus(false)} />
+              <p className={matchFocus && !validMatch ? 'instructions' : 'offscreen'}>
+                <FaInfoCircle />
+                Must match the first password input field.
+              </p>
+
+              <button className='signup-submit' disabled={!!(!validName || !validPwd || !validMatch)}>Sign Up</button>
             </form>
+            <p>Already Registered? <br/>
+              <span>
+                <a href="#sign-in" className="sign-in-link">Sign In</a>
+              </span>
+            </p>
           </div>
           )
       }
     </div>
   );
-
 }
 
 // export default class Registration extends React.Component {
