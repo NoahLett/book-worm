@@ -22,12 +22,15 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
 export default function Registration() {
 
-  const userRef = useRef();
+  const firstNameRef = useRef();
   const errRef = useRef();
 
   const [firstName, setFirstName] = useState('');
+
   const [lastName, setLastName] = useState('');
+
   const [city, setCity] = useState('');
+
   const [state, setState] = useState('');
 
   const [username, setUsername] = useState('');
@@ -46,7 +49,7 @@ export default function Registration() {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    userRef.current.focus();
+    firstNameRef.current.focus();
   }, []);
 
   useEffect(() => {
@@ -83,6 +86,205 @@ export default function Registration() {
     }
   };
 
+  return (
+    <div className="signup-container">
+      {success
+        ? (
+          <div className="section">
+            <h1 className="success">Success!</h1>
+            <p>
+              <a href="#sign-in" className='sign-in-link'>Sign In</a>
+            </p>
+          </div>
+          )
+        : (
+          <div className="section">
+            <p ref={errRef} className={errMsg ? 'errmsg' : 'offscreen'}>{errMsg}</p>
+            <h1 className="signup-header">Register</h1>
+            <form className="signup-form" onSubmit={handleSubmit}>
+              <label htmlFor="firstName" className="signup-label">
+                First Name:
+              </label>
+              <input
+                type="text"
+                id='firstName'
+                autoComplete='off'
+                onChange={e => setFirstName(e.target.value)}
+                required
+                className="input-field"
+                ref={firstNameRef}/>
+
+              <label htmlFor="lastName" className="signup-label">
+                Last Name:
+              </label>
+              <input
+                type="text"
+                id='lastName'
+                autoComplete='off'
+                onChange={e => setLastName(e.target.value)}
+                required
+                className="input-field"/>
+
+              <label htmlFor="city" className="signup-label">
+                City:
+              </label>
+              <input
+                type="text"
+                id='city'
+                autoComplete='off'
+                onChange={e => setCity(e.target.value)}
+                required
+                className="input-field"/>
+
+              <label htmlFor="state" className="signup-label">
+                State:
+              </label>
+              <select
+                required
+                id="state"
+                onChange={e => setState(e.target.value)}
+                className='input-field'>
+                <option value="" defaultValue="">Choose...</option>
+                <option value="AL">AL</option>
+                <option value="AK">AK</option>
+                <option value="AZ">AZ</option>
+                <option value="AR">AR</option>
+                <option value="CA">CA</option>
+                <option value="CO">CO</option>
+                <option value="CT">CT</option>
+                <option value="DE">DE</option>
+                <option value="FL">FL</option>
+                <option value="GA">GA</option>
+                <option value="HI">HI</option>
+                <option value="ID">ID</option>
+                <option value="IL">IL</option>
+                <option value="IN">IN</option>
+                <option value="IA">IA</option>
+                <option value="KS">KS</option>
+                <option value="KY">KY</option>
+                <option value="LA">LA</option>
+                <option value="ME">ME</option>
+                <option value="MD">MD</option>
+                <option value="MA">MA</option>
+                <option value="MI">MI</option>
+                <option value="MN">MN</option>
+                <option value="MS">MS</option>
+                <option value="MO">MO</option>
+                <option value="MT">MT</option>
+                <option value="NE">NE</option>
+                <option value="NV">NV</option>
+                <option value="NH">NH</option>
+                <option value="NJ">NJ</option>
+                <option value="NM">NM</option>
+                <option value="NY">NY</option>
+                <option value="NC">NC</option>
+                <option value="ND">ND</option>
+                <option value="OH">OH</option>
+                <option value="OK">OK</option>
+                <option value="OR">OR</option>
+                <option value="PA">PA</option>
+                <option value="RI">RI</option>
+                <option value="SC">SC</option>
+                <option value="SD">SD</option>
+                <option value="TN">TN</option>
+                <option value="TX">TX</option>
+                <option value="UT">UT</option>
+                <option value="VT">VT</option>
+                <option value="VA">VA</option>
+                <option value="WA">WA</option>
+                <option value="WV">WV</option>
+                <option value="WI">WI</option>
+                <option value="WY">WY</option>
+              </select>
+
+              <label className='signup-label' htmlFor="username">
+                Username:
+                <span className={validName ? 'valid' : 'hide'}>
+                  <FaCheck />
+                </span>
+                <span className={validName || !username ? 'hide' : 'invalid'}>
+                  <FaTimes />
+                </span>
+              </label>
+              <input
+                className='input-field'
+                type="text"
+                id='username'
+                autoComplete='off'
+                onChange={e => setUsername(e.target.value)}
+                required
+                onFocus={() => setUserFocus(true)}
+                onBlur={() => setUserFocus(false)} />
+              <p className={userFocus && username && !validName ? 'instructions' : 'offscreen'}>
+                <FaInfoCircle />
+                4 to 24 characters.<br />
+                Must begin with a letter.<br />
+                Letters, numbers, underscores, hyphens allowed.
+              </p>
+
+              <label className='signup-label' htmlFor="password">
+                Password:
+                <span className={validPwd ? 'valid' : 'hide'}>
+                  <FaCheck />
+                </span>
+                <span className={validPwd || !password ? 'hide' : 'invalid'}>
+                  <FaTimes />
+                </span>
+              </label>
+              <input
+                className='input-field'
+                type="password"
+                id='password'
+                onChange={e => setPassword(e.target.value)}
+                required
+                onFocus={() => setPwdFocus(true)}
+                onBlur={() => setPwdFocus(false)} />
+              <p className={pwdFocus && !validPwd ? 'instructions' : 'offscreen'}>
+                <FaInfoCircle />
+                8 to 24 characters.<br />
+                Must include uppercase and lowercase letters, a number and a special character.<br />
+                Allowed special characters:
+                <span>!</span>
+                <span>@</span>
+                <span>#</span>
+                <span>$</span>
+                <span>%</span>
+              </p>
+
+              <label className='signup-label' htmlFor="confirmpwd">
+                Confirm Password:
+                <span className={validMatch && matchPwd ? 'valid' : 'hide'}>
+                  <FaCheck />
+                </span>
+                <span className={validMatch || !matchPwd ? 'hide' : 'invalid'}>
+                  <FaTimes />
+                </span>
+              </label>
+              <input
+                className='input-field'
+                type="password"
+                id='confirmpwd'
+                onChange={e => setMatchPwd(e.target.value)}
+                required
+                onFocus={() => setMatchFocus(true)}
+                onBlur={() => setMatchFocus(false)} />
+              <p className={matchFocus && !validMatch ? 'instructions' : 'offscreen'}>
+                <FaInfoCircle />
+                Must match the first password input field.
+              </p>
+
+              <button className='signup-submit' disabled={!!(!validName || !validPwd || !validMatch)}>Sign Up</button>
+            </form>
+            <p>Already Registered? <br/>
+              <span>
+                <a href="#sign-in" className="sign-in-link">Sign In</a>
+              </span>
+            </p>
+          </div>
+          )
+      }
+    </div>
+  );
 }
 
 // export default class Registration extends React.Component {
