@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { FaCheck, FaTimes, FaInfoCircle } from 'react-icons/fa';
+import './sign-up.css';
 import axios from 'axios';
 
 // const styles = {
