@@ -139,7 +139,7 @@ export default function Registration() {
                 className="input-field"/>
                 </div>
 
-                <div className="state-boc">
+                <div className="state-box">
                   <label htmlFor="state" className="signup-label">
                     State:
                   </label>

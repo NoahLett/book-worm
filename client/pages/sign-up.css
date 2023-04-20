@@ -19,7 +19,7 @@
   justify-content: center;
   align-items: center;
   padding: 1rem;
-  background-color: rgba(238, 110, 115, 0.5);
+  background-color: #92acb8;
   border-radius: 5px;
 }
 
@@ -32,12 +32,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  align-items: center;
   margin-bottom: 1rem;
   width: 100%;
 }
 
 .signup-label {
   display: flex;
+  justify-content: left;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   font-size: 1.25rem;
   margin-top: 1rem;
@@ -47,6 +49,8 @@
 .input-box {
   display: flex;
   width: 100%;
+  justify-content: center;
+  padding-left: 0.5rem;
 }
 
 .input-field {
@@ -62,10 +66,11 @@
 .signup-submit {
   height: 2.75rem;
   border-radius: 0.75rem;
+  width: 90%;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
   font-size: 1.25rem;
-  background-color: rgb(236, 211, 211);
-  border: 1px solid #f09fa2;
+  background-color: lightgray;
+  border: 1px solid darkslategrey;
   color: darkslategray;
   cursor: pointer;
   margin-top: 1.5rem;
@@ -73,8 +78,9 @@
 }
 
 .signup-submit:hover {
-  background-color: #ee6e73;
+  background-color: darkslategrey;
   color: white;
+  border: 1px solid lightgray;
   transition: all 0.5s;
 }
 
