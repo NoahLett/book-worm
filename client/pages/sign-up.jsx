@@ -103,9 +103,11 @@ export default function Registration() {
             <p ref={errRef} className={errMsg ? 'errmsg' : 'offscreen'}>{errMsg}</p>
             <h1 className="signup-header">Register</h1>
             <form className="signup-form" onSubmit={handleSubmit}>
-              <label htmlFor="firstName" className="signup-label">
-                First Name:
-              </label>
+              <div className='label-box'>
+                <label htmlFor="firstName" className="signup-label">
+                  First Name:
+                </label>
+              </div>
               <input
                 type="text"
                 id='firstName'
@@ -114,10 +116,11 @@ export default function Registration() {
                 required
                 className="input-field"
                 ref={firstNameRef}/>
-
-              <label htmlFor="lastName" className="signup-label">
-                Last Name:
-              </label>
+              <div className='label-box'>
+                <label htmlFor="lastName" className="signup-label">
+                  Last Name:
+                </label>
+              </div>
               <input
                 type="text"
                 id='lastName'
@@ -202,15 +205,17 @@ export default function Registration() {
                   </select>
                 </div>
               </div>
-              <label className='signup-label' htmlFor="username">
-                Username:
-                <span className={validName ? 'valid' : 'hide'}>
-                  <FaCheck />
-                </span>
-                <span className={validName || !username ? 'hide' : 'invalid'}>
-                  <FaTimes />
-                </span>
-              </label>
+              <div className="label-box">
+                <label className='signup-label' htmlFor="username">
+                  Username:
+                  <span className={validName ? 'valid' : 'hide'}>
+                    <FaCheck />
+                  </span>
+                  <span className={validName || !username ? 'hide' : 'invalid'}>
+                    <FaTimes />
+                  </span>
+                </label>
+              </div>
               <input
                 className='input-field'
                 type="text"
@@ -226,16 +231,17 @@ export default function Registration() {
                 Must begin with a letter.<br />
                 Letters, numbers, underscores, hyphens allowed.
               </p>
-
-              <label className='signup-label' htmlFor="password">
-                Password:
-                <span className={validPwd ? 'valid' : 'hide'}>
-                  <FaCheck />
-                </span>
-                <span className={validPwd || !password ? 'hide' : 'invalid'}>
-                  <FaTimes />
-                </span>
-              </label>
+              <div className="label-box">
+                <label className='signup-label' htmlFor="password">
+                  Password:
+                  <span className={validPwd ? 'valid' : 'hide'}>
+                    <FaCheck />
+                  </span>
+                  <span className={validPwd || !password ? 'hide' : 'invalid'}>
+                    <FaTimes />
+                  </span>
+                </label>
+              </div>
               <input
                 className='input-field'
                 type="password"
@@ -255,16 +261,17 @@ export default function Registration() {
                 <span>$</span>
                 <span>%</span>
               </p>
-
-              <label className='signup-label' htmlFor="confirmpwd">
-                Confirm Password:
-                <span className={validMatch && matchPwd ? 'valid' : 'hide'}>
-                  <FaCheck />
-                </span>
-                <span className={validMatch || !matchPwd ? 'hide' : 'invalid'}>
-                  <FaTimes />
-                </span>
-              </label>
+              <div className="label-box">
+                <label className='signup-label' htmlFor="confirmpwd">
+                  Confirm Password:
+                  <span className={validMatch && matchPwd ? 'valid' : 'hide'}>
+                    <FaCheck />
+                  </span>
+                  <span className={validMatch || !matchPwd ? 'hide' : 'invalid'}>
+                    <FaTimes />
+                  </span>
+                </label>
+              </div>
               <input
                 className='input-field'
                 type="password"
