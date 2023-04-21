@@ -46,6 +46,12 @@
   margin-bottom: 0.25rem;
 }
 
+.label-box {
+  display: flex;
+  justify-content: left;
+  width: 90%;
+}
+
 .input-box {
   display: flex;
   width: 100%;
