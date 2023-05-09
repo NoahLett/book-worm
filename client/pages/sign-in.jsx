@@ -12,6 +12,24 @@ const SignIn = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errMsg, setErrMsg] = useState('');
+
+  useEffect(() => {
+    userRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    setErrMsg('');
+  }, [username, password]);
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    try {
+      await dispatch(signIn(username, password));
+    } catch (error) {
+      setErrMsg(error.message);
+    }
+  };
+
 };
 
 // import React from 'react';
