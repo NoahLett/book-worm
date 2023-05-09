@@ -39,7 +39,7 @@ export const {
   logout
 } = authSlice.actions;
 
-export const SignIn = (username, password) => async dispatch => {
+export const signIn = (username, password) => async dispatch => {
   try {
     dispatch(loginRequest());
     const response = await axios.post('/api/auth/sign-in', { username, password });
@@ -49,3 +49,10 @@ export const SignIn = (username, password) => async dispatch => {
     dispatch(loginFailure(error.response.data));
   }
 };
+
+export const signOut = () => async dispatch => {
+  localStorage.removeItem('token');
+  dispatch(logout());
+};
+
+export default authSlice.reducer;
