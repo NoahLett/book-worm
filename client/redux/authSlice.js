@@ -31,3 +31,21 @@ const authSlice = createSlice({
     }
   }
 });
+
+export const {
+  loginRequest,
+  loginSuccess,
+  loginFailure,
+  logout
+} = authSlice.actions;
+
+export const SignIn = (username, password) => async dispatch => {
+  try {
+    dispatch(loginRequest());
+    const response = await axios.post('/api/auth/sign-in', { username, password });
+    localStorage.setItem('token', response.data.token);
+    dispatch(loginSuccess(response.data.user));
+  } catch (error) {
+    dispatch(loginFailure(error.response.data));
+  }
+};
