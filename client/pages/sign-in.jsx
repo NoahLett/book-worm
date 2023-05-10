@@ -30,7 +30,57 @@ const SignIn = () => {
     }
   };
 
+  return (
+    <div className="signin-container">
+      { isLoggedIn
+        ? (
+          <div className="success-container">
+            <h1 className="success-header">Welcome back, {username}</h1>
+            <p>
+              <a href="#post-form">Make a Post</a>
+            </p>
+          </div>
+          )
+        : (
+          <div className="signin-component">
+            <p ref={errRef} className={errMsg ? 'errmsg' : 'offscreen'}>{errMsg}</p>
+            <h1 className="signin-header">Sign In</ h1>
+            <form className="signin-form" onSubmit={handleSubmit}>
+              <label htmlFor="username" className="signin-label">
+                Username:
+              </label>
+              <input
+                type="text"
+                className="signin-input"
+                id='username'
+                ref={userRef}
+                autoComplete='off'
+                onChange={e => setUsername(e.target.value)}
+                required
+                autoFocus />
+
+              <label htmlFor="password" className="signin-label">
+                Password:
+              </label>
+              <input
+                type="password"
+                className="signin-input"
+                id='password'
+                onChange={e => setPassword(e.target.value)}
+                required />
+
+              <button className="signin-submit" disabled={!!(!username || !password)}>Sign In</button>
+            </form>
+            <p className="register-link">
+              Create an Account <a href="#sign-up" className="register-link">Here</a>
+            </p>
+          </div>
+          )}
+    </div>
+  );
 };
+
+export default SignIn;
 
 // import React from 'react';
 // import AppContext from '../lib/app-context';
