@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/home';
 import FAQ from './pages/faq';
 import Registration from './pages/sign-up';
-import Authentication from './pages/sign-in';
+import SignIn from './pages/sign-in';
 import parseRoute from './lib/parse-route';
 import topics from './lib/data';
 import PostForm from './pages/post-form';
@@ -72,7 +72,7 @@ export default class App extends React.Component {
       return <Registration/>;
     }
     if (path === 'sign-in') {
-      return <Authentication/>;
+      return <SignIn/>;
     }
     if (path === 'post-form') {
       return <PostForm/>;
