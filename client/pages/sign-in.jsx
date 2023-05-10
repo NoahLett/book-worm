@@ -30,7 +30,19 @@ const SignIn = () => {
     }
   };
 
-};
+  return (
+    <div className="signin-container">
+      { isLoggedIn
+        ? (
+          <div className="success-container">
+            <h1 className="success-header">Welcome back, {username}</h1>
+            <p>
+              <a href="#post-form">Make a Post</a>
+            </p>
+          </div>
+          )
+        : (
+
 
 // import React from 'react';
 // import AppContext from '../lib/app-context';
