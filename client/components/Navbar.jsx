@@ -1,16 +1,21 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from './Button';
 import './Navbar.css';
 import './Button.css';
-import AppContext from '../lib/app-context';
+// import AppContext from '../lib/app-context';
 import { GiEarthWorm } from 'react-icons/gi';
+import { useDispatch, useSelector } from 'react-redux';
+import { signOut } from '../redux/authSlice';
 
 export default function Navbar() {
+
+  const isLoggedIn = useSelector(state => state.auth.user);
+  const dispatch = useDispatch();
 
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
-  const { user, handleSignOut } = useContext(AppContext);
+  // const { user, handleSignOut } = useContext(AppContext);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
@@ -19,6 +24,14 @@ export default function Navbar() {
       setButton(false);
     } else {
       setButton(true);
+    }
+  };
+
+  const handleSignOut = async e => {
+    try {
+      await dispatch(signOut());
+    } catch (error) {
+      console.error(error.message);
     }
   };
 
@@ -66,10 +79,10 @@ export default function Navbar() {
               </a>
             </li>
             <li className='nav-item'>
-              {user ? <button onClick={handleSignOut} className='nav-links-mobile'>Sign Out</button> : <a className='nav-links-mobile' href='#sign-up'>Sign Up</a>}
+              {isLoggedIn ? <button onClick={handleSignOut} className='nav-links-mobile'>Sign Out</button> : <a className='nav-links-mobile' href='#sign-up'>Sign Up</a>}
             </li>
           </ul>
-          {button && user ? <button onClick={handleSignOut} className='button-outline button-medium'>Sign Out</button> : button && <a href='#sign-up'><Button buttonStyle='button-outline'>Sign Up</Button></a>}
+          {button && isLoggedIn ? <button onClick={handleSignOut} className='button-outline button-medium'>Sign Out</button> : button && <a href='#sign-up'><Button buttonStyle='button-outline'>Sign Up</Button></a>}
         </div>
       </nav>
     </div>
