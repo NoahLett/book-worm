@@ -12,6 +12,8 @@ import PostForm from './pages/post-form';
 import ForSale from './pages/for-sale';
 import Wanted from './pages/wanted';
 import EditForm from './pages/edit-form';
+import store from './redux/store';
+import { Provider } from 'react-redux';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -95,10 +97,12 @@ export default class App extends React.Component {
     const contextValue = { user, route, handleSignIn, handleSignOut, transferSaleId, transferWantId };
     return (
       <AppContext.Provider value={contextValue}>
-        <div>
-          <Navbar/>
-          { this.renderPage() }
-        </div>
+        <Provider store={store}>
+          <div>
+            <Navbar/>
+            { this.renderPage() }
+          </div>
+        </Provider>
       </AppContext.Provider>
     );
   }
