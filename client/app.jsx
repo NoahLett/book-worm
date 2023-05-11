@@ -1,6 +1,6 @@
 import React from 'react';
-import jwtDecode from 'jwt-decode';
-import AppContext from './lib/app-context';
+// import jwtDecode from 'jwt-decode';
+// import AppContext from './lib/app-context';
 import Navbar from './components/Navbar';
 import Home from './pages/home';
 import FAQ from './pages/faq';
@@ -19,16 +19,16 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null,
-      isAuthorizing: true,
+      // user: null,
+      // isAuthorizing: true,
       route: parseRoute(window.location.hash),
       sale: null,
       want: null
     };
-    this.handleSignIn = this.handleSignIn.bind(this);
-    this.handleSignOut = this.handleSignOut.bind(this);
-    this.transferSaleId = this.transferSaleId.bind(this);
-    this.transferWantId = this.transferWantId.bind(this);
+    // this.handleSignIn = this.handleSignIn.bind(this);
+    // this.handleSignOut = this.handleSignOut.bind(this);
+    // this.transferSaleId = this.transferSaleId.bind(this);
+    // this.transferWantId = this.transferWantId.bind(this);
   }
 
   componentDidMount() {
@@ -36,31 +36,31 @@ export default class App extends React.Component {
       const parsed = parseRoute(window.location.hash);
       this.setState({ route: parsed });
     };
-    const token = window.localStorage.getItem('react-context-jwt');
-    const user = token ? jwtDecode(token) : null;
-    this.setState({ user, isAuthorizing: false });
+    // const token = window.localStorage.getItem('react-context-jwt');
+    // const user = token ? jwtDecode(token) : null;
+    // this.setState({ user, isAuthorizing: false });
   }
 
-  handleSignIn(result) {
-    const { user, token } = result;
-    window.localStorage.setItem('react-context-jwt', token);
-    this.setState({ user });
-  }
+  // handleSignIn(result) {
+  //   const { user, token } = result;
+  //   window.localStorage.setItem('react-context-jwt', token);
+  //   this.setState({ user });
+  // }
 
-  handleSignOut() {
-    window.localStorage.removeItem('react-context-jwt');
-    this.setState({ user: null });
-  }
+  // handleSignOut() {
+  //   window.localStorage.removeItem('react-context-jwt');
+  //   this.setState({ user: null });
+  // }
 
-  transferSaleId(id) {
-    this.setState({ sale: id });
-    window.location.hash = `edit-form/sale/${id}`;
-  }
+  // transferSaleId(id) {
+  //   this.setState({ sale: id });
+  //   window.location.hash = `edit-form/sale/${id}`;
+  // }
 
-  transferWantId(id) {
-    this.setState({ want: id });
-    window.location.hash = `edit-form/want/${id}`;
-  }
+  // transferWantId(id) {
+  //   this.setState({ want: id });
+  //   window.location.hash = `edit-form/want/${id}`;
+  // }
 
   renderPage() {
     const { path } = this.state.route;
@@ -91,19 +91,19 @@ export default class App extends React.Component {
   }
 
   render() {
-    if (this.state.isAuthorizing) return null;
-    const { user, route } = this.state;
-    const { handleSignIn, handleSignOut, transferSaleId, transferWantId } = this;
-    const contextValue = { user, route, handleSignIn, handleSignOut, transferSaleId, transferWantId };
+    // if (this.state.isAuthorizing) return null;
+    // const { user, route } = this.state;
+    // const { handleSignIn, handleSignOut, transferSaleId, transferWantId } = this;
+    // const contextValue = { user, route, handleSignIn, handleSignOut, transferSaleId, transferWantId };
     return (
-      <AppContext.Provider value={contextValue}>
-        <Provider store={store}>
-          <div>
-            <Navbar/>
-            { this.renderPage() }
-          </div>
-        </Provider>
-      </AppContext.Provider>
+    // <AppContext.Provider value={contextValue}>
+      <Provider store={store}>
+        <div>
+          <Navbar/>
+          { this.renderPage() }
+        </div>
+      </Provider>
+    // </AppContext.Provider>
     );
   }
 }

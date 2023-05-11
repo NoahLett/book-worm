@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from './Button';
 import './Navbar.css';
 import './Button.css';
-import AppContext from '../lib/app-context';
+// import AppContext from '../lib/app-context';
 import { GiEarthWorm } from 'react-icons/gi';
 import { useDispatch, useSelector } from 'react-redux';
 import { signOut } from '../redux/authSlice';
@@ -15,7 +15,7 @@ export default function Navbar() {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
 
-  const { user, handleSignOut } = useContext(AppContext);
+  // const { user, handleSignOut } = useContext(AppContext);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
